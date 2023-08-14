@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable= no " >
+
+    <link rel="stylesheet" href="/css/explore.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/loader.css">
+
+    <!-- stylesheet for fontawesome icons -->
+    <link  rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <title>Bidall</title>
+</head>
+<body>
+
+    <%-include('./includes/header')%>
+
+    <section class="body">
+        <div class="tags">
+            <div class="list"></div>
+        </div>
+        <div class="posts">
+            <div class="photo_column 1">
+            </div>
+            <div class="photo_column 2">
+            </div>
+            <div class="photo_column 3">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div><a href="/home"><i class="fa fa-home"></i></a></div>
+        <div><a href="/search"><i class="fa fa-search"></i></a></div>
+        <div><a href="/newpost"><i class="fa fa-camera"></i></a></div>
+        <!-- <div><a href="/notifications"><i class="fa fa-bell"></i></a></div> -->
+        <div class="user-profile">
+            <a href="/user/<%=userSession.username%>">
+                <button class="with-image">
+                    <% if(userSession.image) { %>
+                        <Img src="/assets/profilepictures/<%=userSession.image%>">
+                    <% } else { %>
+                        <Img src="/assets/userpicture.png">
+                    <% } %>
+                    <div class="username"><%=userSession.username %></div>
+                    <i class="fa fa-caret-down options-indicator"></i>
+                </button>
+            </a>
+        </div>
+    </footer>
+
+    <div class="loader-wrapper">
+        <div class="loadingio-spinner-rolling-r42hcymfq0f">
+            <div class="ldio-jay0zj72el">
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/explore.js"></script>
+    <script src="/js/search.js"></script>
+    <script>
+        var popularTagsInDecOrder = [];
+        $(document).ready(function(){
+            $.ajax({
+                type: 'GET',
+                url: '/hashtags',
+                success: function(data){
+                    if(data.allHashtags){
+                        for(var i = 0; i < data.allHashtags.length; i++){
+                            for(var j = 0; j < data.allHashtags.length; j++){
+                                if(data.allHashtags[j].count < data.allHashtags[i].count){
+                                    var hold = data.allHashtags[i];
+                                    data.allHashtags[i] = data.allHashtags[j];
+                                    data.allHashtags[j] = hold;
+                                }
+                            };
+                        };
+
+                        popularTagsInDecOrder = data.allHashtags.slice(0, 10);
+
+                        for(var i = 0; i < 10 && i < data.allHashtags.length; i++){
+                            if(i == 0){
+                                $('div.list').append(`
+                                    <div class="a-hashtag current ${i}" onclick="newtag(${i},  '${data.allHashtags[i].tag.substr(1, data.allHashtags[i].length)}')">
+                                        <div>
+                                            <span class="position">${data.allHashtags[i].tag}</span>
+                                        </div>
+                                    </div>
+                                `);
+
+                                getTagPosts(data.allHashtags[i].tag.substr(1, data.allHashtags[i].tag.length));
+                            } else {
+                                $('div.list').append(`
+                                    <div class="a-hashtag ${i}" onclick="newtag(${i}, '${data.allHashtags[i].tag.substr(1, data.allHashtags[i].length)}')">
+                                        <div>
+                                            <span class="position">${data.allHashtags[i].tag}</span>
+                                        </div>
+                                    </div>
+                                `);
+                            }
+                        };
+                    }
+                }
+            });
+        });
+
+        function newtag(position, tag){
+           for(var i = 0; i < popularTagsInDecOrder.length; i++){
+                $(`div.a-hashtag.${i}`).removeClass('current');
+           }
+
+           $(`div.a-hashtag.${position}`).addClass('current');
+
+           for(var i = 0; i <= 3; i++){
+             $(`div.photo_column.${i}`).empty();
+           }
+            getTagPosts(tag);
+        }
+
+        function getTagPosts(tag){
+                $.ajax({
+                    type: 'GET',
+                    url: `/tagposts/${tag}`,
+                    success: function(data){
+                        var count = 1;
+                        if(data.tagPosts){
+                            data.tagPosts.forEach(tagPost => {
+                                $.ajax({
+                                    type: 'GET',
+                                    url: `/userdetails/${tagPost.user}`,
+                                    success: function(data){
+                                        if(count > 3) count = 1;
+
+                                        $(`div.photo_column.${count}`).append(`
+                                        <div class="photo_frame">
+                                            <img src="/assets/postpictures/${tagPost.image}">
+                                            <div class="info">
+                                                <div class="top">
+                                                    <a href="/user/${data.userdetails.username}">
+                                                        <div class="user">
+                                                            <img src="/assets/profilepictures/${data.userdetails.image}">
+                                                            <div class="name">${data.userdetails.username}</div>
+                                                        </div>
+                                                    </a>
+                                                    <div class="date">
+                                                        ${dateCreated(tagPost.date)}
+                                                    </div>
+                                                </div>
+                                                <a href="/post/${tagPost._id}">
+                                                    <div class="caption">
+                                                        ${tagPost.title}
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="actions">
+                                                <div class="bids">
+                                                    <a href="/post/${tagPost._id}">
+                                                        ${biddingStat(tagPost)}
+                                                    </a>
+                                                </div>
+                                                <div><i class="fa fa-heart" onclick="likePost()"></i></div>
+                                            </div>
+                                        </div>
+                                    `);
+
+                                        count++;
+                                    }
+                                });
+                            })
+                        }
+                    }
+                });
+            }
+
+        function biddingStat(post){
+            if(post.bids.length > 1) {
+                return ` <div class="amount-of-bids">
+                <span class="no-of-bids">${post.bids.length-1}</span> bids at <span class="price">$${post.bids[post.bids.length-1].price}</span>
+            </div>`;
+            } else {
+                return ` <div class="amount-of-bids">
+                Starting price <span class="price">$${post.bids[0].price}</span>
+            </div>`;
+            }
+        }
+
+        function dateCreated(date){
+            var currentDate = new Date();
+            date = new Date(date);
+
+            var timeInMilliseconds = currentDate.getTime() - date.getTime(),
+            timeInSeconds = timeInMilliseconds / 1000,
+            timeInMinutes = timeInSeconds / 60,
+            timeInHours = timeInSeconds / 3600,
+            timeInDays  = timeInHours / 24,
+            timeInMonths  = timeInHours / 30,
+            timeInYear  = timeInMonths / 12;
+
+            if(timeInSeconds < 60){
+                return `${Math.floor(timeInSeconds)}s`;
+            } else if(timeInMinutes < 60){
+            return `${Math.floor(timeInMinutes)}m`;
+            } else if(timeInHours < 24){
+                return `${Math.floor(timeInHours)}hr`;
+            } else if(timeInDays < 30){
+            return `${Math.floor(timeInDays)}days`;
+            } else if(timeInMonths < 12){
+                return `${Math.floor(timeInMonths)}mon`
+            } else {
+                return `${Math.floor(timeInYear)}yr`;
+            }
+        }
+
+    </script>
+</body>
+</html>

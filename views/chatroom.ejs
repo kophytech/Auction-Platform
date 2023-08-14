@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+    <link rel="stylesheet" href="/css/chatroom.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/loader.css">
+
+    <!-- stylesheet for fontawesome icons -->
+    <link  rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <!-- stylesheet for animated.css animations -->
+    <link  rel="stylesheet" href="/css/animate.min.css">
+
+    <title>Bidall</title>
+</head>
+<body>
+
+    <%-include('./includes/header')%>
+
+    <section class="chatbox">
+        <input class="sessionuser" value="<%=userSession.username%>" hidden>
+        <input class="chatid" value="<%=chatData._id%>" hidden>
+        <input class="recipient" value="<%=recipient.username%>" hidden>
+
+        <div class="chat">
+            <div class="user">
+                <div class="back"><i class="fa fa-chevron-left"></i></div>
+                <div class="userdetails">
+                    <% if(recipient.image) { %>
+                        <Img src="/assets/profilepictures/<%=recipient.image%>">
+                    <% } else { %>
+                        <Img src="/assets/userpicture.png">
+                    <% } %>
+                    <div class="username"><%=recipient.username%></div>
+                </div>
+                <div class="price"><i class="fa fa-circle"></i>$<%=chatData.price%></div>
+            </div>
+
+            <%if(userSession.subscribed == true) { %>
+                <div class="messages"></div>
+                <%if(recipient.subscribed == false){%>
+                    <div class="recipient-not-subscribed">Recipient can't see your messages. They haven't subscribed for chat.</div>
+                <%}%>
+                <div class="textbox">
+                    <div class="text-input-box">
+                        <textarea class="text-input" id="" placeholder="Type your message here.."></textarea>
+                        <button class="sendmessage" disabled>Send</button>
+                    </div>
+                </div>
+            <% } else { %>
+                <section class="subscribe">
+                    <div class="msg">
+                        <div class="small-text">With one low monthly price</div>
+                        <div class="large-text">Have free access to the chat room. The room where deals are finalized.</div>
+                    </div>
+                    <div class="sub-details">
+                        <div class="price">
+                            <span class="digit">$10.00</span>/month
+                        </div>
+                        <div class="details">
+                            For $10 you have access to the chatroom to finalize the deal with the bid winner or the post's user.
+                        </div>
+                        <!-- <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_s-xclick">
+                            <input type="hidden" name="hosted_button_id" value="G75L22KSTGC3Q">
+                            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" hidden>
+                            <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1" hidden>
+                        </form> -->
+
+                        <div class="proceed-subscribe"></div>
+
+                    </div>
+                </section>
+
+                <!-- <section class="payment-section hidden">
+                    <div class="payment-form">
+                        <div id="paypal-button-container"></div>
+                    </div>
+                </section> -->
+            <%}%>
+        </div>
+    </section>
+
+    <div class="loader-wrapper">
+        <div class="loadingio-spinner-rolling-r42hcymfq0f">
+            <div class="ldio-jay0zj72el">
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/chatroom.js"></script>
+    <script src="/js/search.js"></script>
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AcqgQNuUe-r6VzvshUbwQP3vIVqsnBgoHtvfQ2po8U03tQzDrOVzpV6hRkzzT_9mv7lv8639YzSf8pg0&currency=USD">
+        // Required. Replace SB_CLIENT_ID with your sandbox client ID.
+    </script>
+
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+            // This function sets up the details of the transaction, including the amount and line item details.
+            return actions.order.create({
+                purchase_units: [{
+                amount: {
+                    value: '10'
+                }
+                }]
+            });
+            },
+            onApprove: function(data, actions) {
+            // This function captures the funds from the transaction.
+            return actions.order.capture().then(function(details) {
+                console.log();
+            });
+            }
+        }).render('.proceed-subscribe');
+        //This function displays Smart Payment Buttons on your web page.
+    </script>
+
+    <script>
+        var chatroomid = $('input.chatid').val(),
+        sessionUser = $('input.sessionuser').val(),
+        messages = [];
+
+        $(document).ready(function(){
+            // setInterval(function(){
+            //     console.log('2');
+            //     fetchMessages();
+            // }, 100);
+
+            $('textarea.text-input').keyup(function(){
+                if($('textarea.text-input').val().trim() != ''){
+                    $('button.sendmessage').attr('disabled', false);
+                } else {
+                    $('button.sendmessage').attr('disabled', true);
+                }
+            });
+
+            $('button.sendmessage').click(function(){
+                $.ajax({
+                    type: 'POST',
+                    url: '/sendmessages',
+                    data: {sender: sessionUser, recipient: $('input.recipient').val(), content: $('textarea.text-input').val(), chatroomid: chatroomid},
+                    success: function(data){
+                        if(data.messageSent){
+                            console.log('sucess');
+                            $('textarea.text-input').val('');
+                            fetchMessages();
+                        }
+                    },
+                    error: function(){
+
+                    }
+                });
+            });
+
+            $('button.proceed-subscribe').click(function(){
+                $('section.payment-section').removeClass('hidden');
+            });
+        });
+
+        function fetchMessages(){
+            $.ajax({
+                type: 'GET',
+                url: `/chatroom/messages/${chatroomid}`,
+                success: function(data){
+                    if(data.messages){
+                        messages = data.messages;
+                        displayMessages();
+                    }
+                }
+            });
+
+        }
+
+        function displayMessages(){
+            $('div.messages').html('');
+
+            for (var i = 0; i < messages.length; i++){
+                if(messages[i].sender == sessionUser){
+                    $('div.messages').append(`
+                        <div class="me">
+                            ${messages[i].content}
+                        </div>
+                    `);
+                } else {
+                    $('div.messages').append(`
+                        <div class="recipient">
+                            ${messages[i].content}
+                        </div>
+                    `);
+                }
+            }
+
+            // document.getElementsByClassName('messages')[0].scrollTo(0, document.getElementsByClassName('messages')[0].scrollHeight);
+        }
+
+    </script>
+
+</body>
+</html>

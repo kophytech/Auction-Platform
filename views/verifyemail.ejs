@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="./css/signin.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/loader.css">
+
+    <title>Verify Your Email</title>
+</head>
+<body>
+    <section class="signup">
+        <img src="/assets/envelope.png" class="envelope">
+        <div class="head">
+            <div class="message">Enter confirmation code we sent to <%=email%>. <div class="resendcode"><a href="/initiateVerification">Resend Code</a></div></div>
+        </div>
+        <div class="errormsg" hidden>Verification unsuccessful, could be an issue with your network, please try resending code.</div>
+        <form method="POST" onsubmit="return false;">
+            <input class="verificationcode" type="text" name="verificationcode" placeholder="Enter Code" required>
+            <input class="email" type="email" name="email" value='<%=email %>' hidden required>
+
+            <button class="verifyemail" disabled>Verify Email</button>
+        </form>
+        <div class="orsignin">
+            Already have an account? <a href='/signin'>Sign In</a>
+        </div>
+    </section>
+
+    <div class="loader-wrapper">
+        <div class="loadingio-spinner-rolling-r42hcymfq0f">
+            <div class="ldio-jay0zj72el">
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/verifyemail.js"></script>
+    <script src="/js/search.js"></script>
+</body>
+</html>

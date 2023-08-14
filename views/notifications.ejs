@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="/css/notifications.css">
+    <link rel="stylesheet" href="/css/loader.css">
+
+    <!-- stylesheet for fontawesome icons -->
+    <link  rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <title>Bidall</title>
+</head>
+<body>
+
+    <section>
+        <div class="header">
+            Activity
+        </div>
+        <input class="user" value="<%=userSession.username%>" hidden>
+
+        <div class="all-notifications ">
+        </div>
+    </section>
+
+    <footer>
+        <div><a href="/home"><i class="fa fa-home"></i></a></div>
+        <div><a href="/search"><i class="fa fa-search"></i></a></div>
+        <div><a href="/newpost"><i class="fa fa-camera"></i></a></div>
+        <!-- <div><a href="/notification"><i class="fa fa-bell"></i></a></div> -->
+        <div class="user-profile">
+            <a href="/user/<%=userSession.username%>">
+                <button class="with-image">
+                    <% if(userSession.image) { %>
+                        <Img src="/assets/profilepictures/<%=userSession.image%>">
+                    <% } else { %>
+                        <Img src="/assets/userpicture.png">
+                    <% } %>
+                    <div class="username"><%=userSession.username %></div>
+                    <i class="fa fa-caret-down options-indicator"></i>
+                </button>
+            </a>
+        </div>
+    </footer>
+
+
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/notifications.js"></script>
+    <script src="/js/search.js"></script>
+
+</body>
+</html>

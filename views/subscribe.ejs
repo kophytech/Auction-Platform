@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/subscribe.css">
+    <link rel="stylesheet" href="/css/loader.css">
+
+    <!-- stylesheet for fontawesome icons -->
+    <link  rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <link  rel="stylesheet" href="/css/animate.min.css">
+
+    <title>Bidall</title>
+</head>
+<body>
+
+    <%-include('./includes/header')%>
+
+    <div class="header">
+        <div class="back"><i class="fa fa-chevron-left"></i></div>
+        <div class="text">Subscribe</div>
+    </div>
+
+    <input class="user" value="<%=userSession.username%>" hidden>
+
+
+    <footer>
+        <div><a href="/home"><i class="fa fa-home"></i></a></div>
+        <div><a href="/search"><i class="fa fa-search"></i></a></div>
+        <div><a href="/newpost"><i class="fa fa-camera"></i></a></div>
+        <!-- <div><a href="/notifications"><i class="fa fa-bell"></i></a></div> -->
+        <div class="user-profile">
+            <a href="/user/<%=userSession.username%>">
+                <button class="with-image">
+                    <% if(userSession.image) { %>
+                        <Img src="/assets/profilepictures/<%=userSession.image%>">
+                    <% } else { %>
+                        <Img src="/assets/userpicture.png">
+                    <% } %>
+                    <div class="username"><%=userSession.username %></div>
+                    <i class="fa fa-caret-down options-indicator"></i>
+                </button>
+            </a>
+        </div>
+    </footer>
+
+    <div class="loader-wrapper">
+        <div class="loadingio-spinner-rolling-r42hcymfq0f">
+            <div class="ldio-jay0zj72el">
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/home.js"></script>
+    <script src="/js/search.js"></script>
+
+</body>
+</html>

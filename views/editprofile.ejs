@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable= no " >
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/editprofile.css">
+    <link rel="stylesheet" href="/css/loader.css">
+
+    <!-- stylesheet for fontawesome icons -->
+    <link  rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <title>AUCTION</title>
+</head>
+<body>
+
+    <%-include('./includes/header')%>
+
+    <div class="header">
+        <div class="back"><i class="fa fa-chevron-left"></i></div>
+        <div class="text">Edit Profile</div>
+    </div>
+
+    <section>
+        <form action="/editprofile" method="POST" enctype="multipart/form-data">
+            <div class="profilepicture">
+                <% if(user.image) { %>
+                    <img src="/assets/profilepictures/<%=user.image%>" class="profilepicture">
+                <% } else { %>
+                    <img src="/assets/userpicture.png" class="profilepicture">
+                <% } %>
+
+                <label for="profilepic" class="changeprofilepicture">Change Profile Picture</label>
+                <input type="file" name="profilepicture" accept="image/*" id="profilepic" hidden>
+            </div>
+            <div class="info">
+                <div class="label">Username</div>
+                <input value="<%=userSession.username %>" readonly>
+            </div>
+            <div class="info">
+                <div class="label">Website</div>
+                <input class="website" type="text" name="website" value="<%=userSession.website%>" placeholder="Website">
+            </div>
+            <div class="info">
+                <div class="label">Bio</div>
+                <textarea name="bio"><%=userSession.bio%></textarea>
+            </div>
+            <div class="info">
+                <div class="label">Full Name</div>
+                <input  value="<%=userSession.fullname%>" readonly>
+            </div>
+
+            <div class="personalinfo">
+                <p class="title">Personal Information</p>
+                Provide your personal information, even if the account is used for a business, a pet or something else. This won't be a part of your public profile.
+            </div>
+            <div class="info">
+                <div class="label">Email</div>
+                <input class="email" name="email" value="<%=userSession.email%>" readonly>
+            </div>
+            <div class="info">
+                <div class="label">Gender</div>
+                <% var usergender = userSession.gender%>
+                <select class="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="custom">Custom</option>
+                    <option value="prefer not to say">Prefer Not To Say</option>
+                </select>
+            </div>
+            <div class="info">
+                <div class="label">Country</div>
+                <input class="country" type="text" name="country" value="<%=userSession.country%>" placeholder="Country"></input>
+            </div>
+
+            <button class="updateprofile">Update Profile</button>
+            <div class="msg success" hidden>Profile Updated Successfully</div>
+            <div class="msg error" hidden>Error Updating Profile</div>
+        </form>
+    </section>
+
+    <footer>
+        <div><a href="/home"><i class="fa fa-home"></i></a></div>
+        <div><a href="/search"><i class="fa fa-search"></i></a></div>
+        <div><a href="/newpost"><i class="fa fa-camera"></i></a></div>
+        <!-- <div><a href="/notifications"><i class="fa fa-bell"></i></a></div> -->
+        <div class="user-profile">
+            <a href="/user/<%=userSession.username%>">
+                <button class="with-image">
+                    <% if(userSession.image) { %>
+                        <Img src="/assets/profilepictures/<%=userSession.image%>">
+                    <% } else { %>
+                        <Img src="/assets/userpicture.png">
+                    <% } %>
+                    <div class="username"><%=userSession.username %></div>
+                    <i class="fa fa-caret-down options-indicator"></i>
+                </button>
+            </a>
+        </div>
+    </footer>
+
+    <link rel="stylesheet" href="/css/loader.css">
+    <div class="loader-wrapper">
+        <div class="loadingio-spinner-rolling-r42hcymfq0f">
+            <div class="ldio-jay0zj72el">
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/editprofile.js"></script>
+    <script src="/js/search.js"></script>
+</body>
+</html>

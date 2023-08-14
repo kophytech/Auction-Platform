@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <link  rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <title>Dashboard | Bidall</title>
+</head>
+<body>
+    <%-include('./includes/header')%>
+    
+    <section class="body">
+
+        <div class="all-users">
+            <div class="title">Users</div>
+            <div class="list">
+
+                <% for(var i = 1; i <= allUsers.length; i++ ) { %>
+                    <div class="user <%=allUsers[allUsers.length - i]._id%>">
+                        <img src="/assets/userpicture.png">
+                        <div class="info">
+                            <div class="top">
+                                <div class="name"><%=allUsers[allUsers.length - i].username %></div>
+                                <div class="actions">
+                                    <i class="fa fa-trash" onclick="showDeleteDialog('<%=allUsers[allUsers.length - i]._id%>')"></i>
+                                </div>
+                            </div>
+                            <div class="details">
+                                <div class="">
+                                    <div class="digit"><%=allUsers[allUsers.length - i].posts.length %></div>
+                                    <div class="label">Photos</div>
+                                </div>
+                                <div>
+                                    <div class="digit"><%=allUsers[allUsers.length - i].bids.length %></div>
+                                    <div class="label">Bids</div>
+                                </div>
+                                <div>
+                                    <div class="digit"><%=allUsers[allUsers.length - i].followers.length %></div>
+                                    <div class="label">Followers</div>
+                                </div>
+                                <div>
+                                    <div class="digit"><%=allUsers[allUsers.length - i].following.length %></div>
+                                    <div class="label">Following</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="delete-frame <%=allUsers[allUsers.length - i]._id%> hidden">
+                            <div class="layer"></div>
+                            <div class="delete-box">
+                                <div class="text">Are you sure you want to delete user?</div>
+                                <div class="options">
+                                    <button class="cancel" onclick="hideDeleteDialog('<%=allUsers[allUsers.length - i]._id%>')">Cancel</button>
+                                    <button class="delete" onclick="deleteUser('<%=allUsers[allUsers.length - i]._id%>')">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+
+            </div>
+        </div>
+
+        <div class="boards">
+            <div class="board users">
+                <i class="fa fa-users"></i>
+                <div class="content">
+                    <div class="count">0</div>
+                    <div class="">TOTAL USERS</div>
+                </div>
+            </div>
+            <div class="board posts">
+                <i class="fa fa-camera"></i>
+                <div class="content">
+                    <div class="count">0</div>
+                    <div class="">PHOTOS</div>
+                </div>
+            </div>
+            <div class="board chats">
+                <i class="fa fa-comments"></i>
+                <div class="content">
+                    <div class="count">0</div>
+                    <div class="">CHATROOMS</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="errormessage hidden">
+        <div class="text">
+        </div>
+        <i class="fa fa-times" onclick="hideError()"></i>
+    </div>
+
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/search.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.ajax({
+                type:'GET',
+                url:'/metrics/users',
+                success: function(data){
+                    if(data.error) {
+                        $('div.board.users div.count').html('-');
+                    } else if(data.userCount > 0) {
+                        $('div.board.users div.count').html(data.userCount);
+                    } else {
+                        $('div.board.users div.count').html('-');
+                    }
+                },
+                error: function(data){
+
+                }
+            });
+
+            $.ajax({
+                type:'GET',
+                url:'/metrics/posts',
+                success: function(data){
+                    if(data.error) {
+                        $('div.board.posts div.count').html('-');
+                    } else if(data.postCount > 0) {
+                        $('div.board.posts div.count').html(data.postCount);
+                    } else {
+                        $('div.board.posts div.count').html('-');
+                    }
+                },
+                error: function(data){
+
+                }
+            });
+
+            $.ajax({
+                type:'GET',
+                url:'/metrics/chatrooms',
+                success: function(data){
+                    if(data.error) {
+                        $('div.board.chats div.count').html('-');
+                    } else if(data.chatCount > 0) {
+                        $('div.board.chats div.count').html(data.chatCount);
+                    } else {
+                        $('div.board.chats div.count').html('-');
+                    }
+                },
+                error: function(data){
+
+                }
+            });
+        });
+
+        function deleteUser(userId){
+            $.ajax({
+                type: 'GET',
+                url: `/deleteUser/${userId}`,
+                success: function(data){
+                    if(data.error){
+                        $(`div.delete-frame.${userId}`).addClass('hidden');
+                        $('div.errormessage').removeClass('hidden');
+                        $('div.errormessage div.text').html('Error occured in the server. Please try again');
+                    } else if(data.userDeleted) {
+                        $(`div.delete-frame.${userId}`).addClass('hidden');
+                        $(`div.user.${userId}`).remove();
+                    }
+                },
+                error: function (data) {
+                    $(`div.delete-frame.${userId}`).addClass('hidden');
+                    $('div.errormessage').removeClass('hidden');
+                    $('div.errormessage div.text').html('There was an issue sending your request. Check your network and try again');
+                }
+            });
+        };
+
+        function hideError(){
+            $(`div.errormessage`).addClass('hidden');
+        }
+
+        function showDeleteDialog(userId){
+            $(`div.delete-frame.${userId}`).removeClass('hidden');
+        };
+
+        function hideDeleteDialog(userId){
+            $(`div.delete-frame.${userId}`).addClass('hidden');
+        };
+
+    </script>
+</body>
+</html>
+
+

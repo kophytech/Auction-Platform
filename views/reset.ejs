@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable= no " >
+
+    <link rel="stylesheet" href="/css/forgotpassword.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/loader.css">
+
+    <title>Choose Passoword</title>
+</head>
+<body>
+    <section class="signup">
+        <div class="head">
+            <i class="fa fa-question"></i> <div class="message">Choose your new password. <div class="resendcode"><a href="/initiateVerification">Resend Link</a></div></div>
+        </div>
+        <div class="errormsg" hidden>There's no account with this email.</div>
+
+        <input class="email" value="<%=userEmail%>" hidden>
+        <input class="new" type="password" name="newpassword" placeholder="New Password" required>
+        <input class="confirm" type="password" name="email" placeholder="Confirm Password" required>
+
+        <button class="submit" disabled>Update Password</button>
+
+        <div class="orsignin">
+            Don't have an account? <a href='/signup'>Sign up</a>
+        </div>
+    </section>
+
+    <div class="loader-wrapper">
+        <div class="loadingio-spinner-rolling-r42hcymfq0f">
+            <div class="ldio-jay0zj72el">
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/reset.js"></script>
+    <script src="/js/search.js"></script>
+</body>
+</html>

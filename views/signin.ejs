@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+    <link rel="stylesheet" href="./css/signin.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="/css/loader.css">
+
+    <title>Sign In | Bidall</title>
+</head>
+<body>
+    <section>
+        <div class="logo">
+            <a href="/">Bidall</a>
+        </div>
+        <div class="errormsg"></div>
+        <form method="POST" onsubmit="return false;">
+            <input class="userlogin" type="text" name="userlogin" placeholder="Username or Email" required>
+            <input class="password" type="password" name="userpass" placeholder="Password" required>
+            <div class="link">
+               <a href="/forgotpassword" class="forgotpassword"> I Can't Remember My Password?</a>
+            </div>
+            <button class="submit" disabled>SIGN IN</button>
+        </form>
+        <div class="orsignin">
+            Don't have an account? <a href='/signup'>Sign up</a>
+        </div>
+    </section>
+
+    <div class="loader-wrapper">
+        <div class="loadingio-spinner-rolling-r42hcymfq0f">
+            <div class="ldio-jay0zj72el">
+                <div></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/signin.js"></script>
+    <script src="/js/search.js"></script>
+</body>
+</html>

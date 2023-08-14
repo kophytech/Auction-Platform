@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/loader.css">
+
+    <!-- stylesheet for fontawesome icons -->
+    <link  rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <link  rel="stylesheet" href="/css/animate.min.css">
+
+    <title>Bidall</title>
+</head>
+<body>
+
+    <%-include('./includes/header')%>
+
+    <input class="user" value="<%=userSession.username%>" hidden>
+    <section class="body">
+        <section class="all">
+           <div class="photo_column 1">
+           </div>
+           <div class="photo_column 2">
+           </div>
+           <div class="photo_column 3">
+           </div>
+        </section>
+    </section>
+
+    <footer>
+        <div class="current-nav"><a href="/home"><i class="fa fa-home"></i></a></div>
+        <div><a href="/search"><i class="fa fa-search"></i></a></div>
+        <div><a href="/newpost"><i class="fa fa-camera"></i></a></div>
+        <!-- <div><a href="/notifications"><i class="fa fa-bell"></i></a></div> -->
+        <div class="user-profile">
+            <a href="/user/<%=userSession.username%>">
+                <button class="with-image">
+                    <% if(userSession.image) { %>
+                        <Img src="/assets/profilepictures/<%=userSession.image%>">
+                    <% } else { %>
+                        <Img src="/assets/userpicture.png">
+                    <% } %>
+                    <div class="username"><%=userSession.username %></div>
+                    <i class="fa fa-caret-down options-indicator"></i>
+                </button>
+            </a>
+        </div>
+    </footer>
+
+    <div class="loader-wrapper">
+        <div class="loadingio-spinner-rolling-r42hcymfq0f">
+            <div class="ldio-jay0zj72el">
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/home.js"></script>
+    <script src="/js/search.js"></script>
+    <script>
+        function likePost(postId, position){
+            $.ajax({
+                type: 'POST',
+                url: '/likepost',
+                dataType: 'json',
+                data: {postId},
+                success: function(data){
+                    if(data.likedPost){
+                        $(`div.likeIcon.${position} div.nooflikes`).html(`${data.likesno}`);
+                        $(`div.likeIcon.${position} i.fa-heart`).addClass('animate__heartBeat');
+                        $(`div.likeIcon.${position} i.fa-heart`).addClass('liked');
+                    }
+                    else if(data.unlikedPost){
+                        $(`div.likeIcon.${position} div.nooflikes`).html(`${data.likesno}`);
+                        $(`div.likeIcon.${position} i.fa-heart`).removeClass('animate__heartBeat');
+                        $(`div.likeIcon.${position} i.fa-heart`).removeClass('liked');
+                    }
+                },
+                error: function(error){
+
+                }
+            });
+        }
+
+        function detLikedIcon(post, count){
+            if(post.likes.includes(sessionUser)){
+                return `<i class="fa fa-heart animate__animated ${post._id} liked" onclick="likePost('${post._id}', '${count}')"></i>`;
+            } else {
+                return `<i class="fa fa-heart animate__animated ${post._id}" onclick="likePost('${post._id}', '${count}')"></i>`;
+            }
+        }
+
+    </script>
+</body>
+</html>

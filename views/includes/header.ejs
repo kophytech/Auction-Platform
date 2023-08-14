@@ -1,0 +1,48 @@
+<header>
+    <div class="left" onmousedown="">
+
+        <div class="logo"><a href="/home">Bidall</a></div>
+        <div class="search">
+            <input class="search" placeholder="Search" maxlength="50">
+            <div class="search-content">
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-logout">
+        <a href="/signout">
+            <i class="fa fa-power-off"></i>
+        </a>
+    </div>
+
+    <nav class="">
+        <div class=""><a href="/home"><i class="fa fa-home"></i></a></div>
+        <div><a href="/explore"><i class="fa fa-hashtag"></i></a></div>
+        <!-- <div class="notification-icon">
+            <i class="fa fa-bell"></i>
+            <div class="all-notifications hidden" hidden=true>
+
+            </div>
+        </div> -->
+        <div class="user-profile">
+            <button class="with-image">
+                <% if(userSession.image) { %>
+                   <Img src="/assets/profilepictures/<%=userSession.image%>" id="user-profile">
+               <% } else { %>
+                   <Img src="/assets/userpicture.png" id="user-profile">
+               <% } %>
+                   <div class="username" id="user-profile"><%=userSession.username %></div>
+                   <i class="fa fa-caret-down options-indicator" id="user-profile"></i>
+            </button>
+            <div class="user-profile-options" hidden>
+                <%if(userSession.username == 'admin') { %>
+                    <a href="/dashboard"><div class="dashboard">Dashboard</div></a>
+                <% } %>
+                <a href="/newpost"><div>Post Photo</div></a>
+                <a href="/user/<%=userSession.username%>"><div class="">Profile</div></a>
+                <a href="/editprofile"><div class="">Edit Profile</div></a>
+                <a href="/signout"><div class="logout">Log Out</div></a>
+            </div>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable= no" >
+
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/loader.css">
+
+    <!-- stylesheet for fontawesome icons -->
+    <link  rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <title>Bidall</title>
+
+</head>
+<body>
+   <section class="uppermost">
+        <div class="toplayer">
+            <header>
+                <div class="logo"><a href="/">Bidall</a></div>
+
+                <%if(userSession == undefined) { %>
+                    <nav>
+                        <div class="signin"><a href="/signin">Log In</a></div>
+                        <a href="/signup"><div class="signup">Get Started</div></a>
+                    </nav>
+                    <% } else { %>
+                    <nav class="more-items">
+                        <div class="all-auction"><a href="/home"><i class="fa fa-home"></i></a></div>
+                        <div class="all-auction"><a href="/explore"><i class="fa fa-hashtag"></i></a></div>
+                        <!-- <div class="all-auction"><a href="/notifications"><i class="fa fa-bell"></i></a></div> -->
+                        <div class="user-profile">
+                            <% if(userSession.image) { %>
+                                <button class="with-image">
+                                    <Img src="/assets/profilepictures/<%=userSession.image%>">
+                                    <div class="username"><%=userSession.username %></div>
+                                    <i class="fa fa-caret-down options-indicator"></i>
+                                </button>
+                            <% } else { %>
+                                <button class="without-image">
+                                    <i class="fa fa-user-circle"></i>
+                                    <div class="username"><%=userSession.username %></div>
+                                    <i class="fa fa-caret-down options-indicator"></i>
+                                </button>
+                            <% } %>
+
+                            <div class="user-profile-options" hidden>
+                                <a href="/user/<%=userSession.username%>"><div class="">Profile</div></a>
+                                <div class="">Collection</div>
+                                <div class="">Edit Profile</div>
+                                <a href="/signout"><div class="logout">Log Out</div></a>
+                            </div>
+                        </div>
+                    </nav>
+                    <% } %>
+            </header>
+
+
+            <div class="body">
+                <div class="text">
+                    The best photos shared by talented creators for you to place your price on and bid it all.
+                </div>
+                <button class="explore"><a href="/explore">Explore</a></button>
+            </div>
+        </div>
+   </section>
+
+
+   <%if(userSession != undefined) { %>
+        <footer>
+            <div><a href="/home"><i class="fa fa-home"></i></a></div>
+            <div><a href="/search"><i class="fa fa-search"></i></a></div>
+            <div><a href="/newpost"><i class="fa fa-camera"></i></a></div>
+            <!-- <div><a href="/notifications"><i class="fa fa-bell"></i></a></div> -->
+            <div class="user-profile">
+                <a href="/user/<%=userSession.username%>">
+                    <button class="with-image">
+                        <% if(userSession.image) { %>
+                            <Img src="/assets/profilepictures/<%=userSession.image%>">
+                        <% } else { %>
+                            <Img src="/assets/userpicture.png">
+                        <% } %>
+                        <div class="username"><%=userSession.username %></div>
+                        <i class="fa fa-caret-down options-indicator"></i>
+                    </button>
+                </a>
+            </div>
+        </footer>
+    <% } %>
+
+    <div class="loader-wrapper">
+        <div class="loadingio-spinner-rolling-r42hcymfq0f">
+            <div class="ldio-jay0zj72el">
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+   <script src="/js/jquery-3.5.1.js"></script>
+   <script src="/js/search.js"></script>
+   <script src="https://unpkg.com/animejs@2.2.0/anime.min.js"></script>
+   <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+</body>
+</html>

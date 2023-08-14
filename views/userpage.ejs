@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/loader.css">
+    <link rel="stylesheet" href="/css/userpage.css">
+
+    <!-- stylesheet for fontawesome icons -->
+    <link  rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <title>AUCTION</title>
+</head>
+<body>
+
+    <%-include('./includes/header')%>
+
+    <section class="user">
+        <div class="user-info">
+            <% if(user.image) { %>
+                <Img src="/assets/profilepictures/<%=user.image%>">
+            <% } else { %>
+                <Img src="/assets/userpicture.png">
+            <% } %>
+            <div class="info">
+                <div class="top">
+                    <div class="name"><%=user.username%></div>
+                    <input class="user" value="<%=user.username %>" hidden>
+                    <%if(userSession.username == user.username) { %>
+                        <a href="/editprofile"><button class="editprofile">Edit Profile</button></a>
+                    <% } else { %>
+                        <%if(user.followers.includes(userSession.username)) { %>
+                            <button class="unfollow">Unfollow</button>
+                            <button class="follow" hidden>Follow</button>
+                        <% } else { %>
+                            <button class="follow">Follow</button>
+                            <button class="unfollow" hidden>Unfollow</button>
+                        <% } %>
+                    <% } %>
+
+                </div>
+                <div class="bottom">
+                    <%if(userSession.username == user.username) { %>
+                        <%=userSession.bio %>
+                    <% } else { %>
+                        <%=user.bio %>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+        <div class="middle">
+            <div class="auctions"><span class="digit"><%=user.posts.length%></span> <div>Photos</div></div>
+            <div class="auctions"><span class="digit"><%=user.bids.length%></span> <div>Bids</div></div>
+            <div class="auctions followers"><span class="digit"><%=user.followers.length%></span> <div>Followers</div></div>
+            <div class="auctions following"><span class="digit"><%=user.following.length%></span> <div>Following</div></div>
+        </div>
+    </section>
+
+    <section class="user-content">
+        <%var name = 'labi'%>
+        <div class="user-content photos">
+            <div class="photo_column 1">
+            </div>
+            <div class="photo_column 2">
+            </div>
+            <div class="photo_column 3">
+            </div>
+        </div>
+    </section>
+
+    <section class="follow" hidden>
+        <div class="overlay"></div>
+        <div class="users">
+            <div class="title">
+                <span></span>
+                <i class="fa fa-times"></i>
+            </div>
+            <div class="list">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div><a href="/home"><i class="fa fa-home"></i></a></div>
+        <div><a href="/search"><i class="fa fa-search"></i></a></div>
+        <div><a href="/newpost"><i class="fa fa-camera"></i></a></div>
+        <!-- <div><a href="/notifications"><i class="fa fa-bell"></i></a></div> -->
+        <div class="user-profile">
+            <a href="/user/<%=userSession.username%>">
+                <button class="with-image">
+                    <% if(userSession.image) { %>
+                        <Img src="/assets/profilepictures/<%=userSession.image%>">
+                    <% } else { %>
+                        <Img src="/assets/userpicture.png">
+                    <% } %>
+                    <div class="username"><%=userSession.username %></div>
+                    <i class="fa fa-caret-down options-indicator"></i>
+                </button>
+            </a>
+        </div>
+    </footer>
+
+
+    <div class="loader-wrapper">
+        <div class="loadingio-spinner-rolling-r42hcymfq0f">
+            <div class="ldio-jay0zj72el">
+                <div></div>
+            </div>
+        </div>
+    </div>
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/search.js"></script>
+    <script src="/js/userpage.js"></script>
+    <script>
+        var thisUser = $('input.user').val();
+
+        function followSpree(following){
+            var userToFollow = {
+                'username': following
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/followuser',
+                dataType: 'json',
+                data: userToFollow,
+                success: function(data){
+                    if(data.followedUser){
+                        var element = 'div.follower button.' + following;
+
+                        $(element).removeClass('follow-btn');
+                        $(element).addClass('unfollow-btn').text('UnFollow').attr('onclick', `unfollowSpree('${following}')`);
+
+                        if(thisUser == data.sessionUser){
+                            $('div.following').html(``);
+                            $('div.following').html(`<span class="digit">${data.noOfMyFollowing}</span> <div>Following</div>`);
+                        }
+                    } else {
+                        $('div.error').attr('hidden', false);
+                    }
+                },
+                error: function(data){
+                    console.log('Herror', data)
+                }
+            });
+        };
+
+        function unfollowSpree(following){
+            var userToUnfollow = {
+                'username': following
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: '/unfollowuser',
+                dataType: 'json',
+                data: userToUnfollow,
+                success: function(data){
+                    if(data.unfollowedUser){
+                        var element = 'div.follower button.' + following;
+
+                        $(element).removeClass('unfollow-btn');
+                        $(element).addClass('follow-btn').text('Follow').attr('onclick', `followSpree('${following}')`);
+
+                        if(thisUser == data.sessionUser){
+                            $('div.following').html(``);
+                            $('div.following').html(`<span class="digit">${data.noOfMyFollowing}</span> <div>Following</div>`);
+                        }
+                    } else {
+                        $('div.error').attr('hidden', false);
+                    }
+                },
+                error: function(data){
+                    console.log('Herror', data)
+                }
+            });
+        };
+ </script>
+</body>
+</html>

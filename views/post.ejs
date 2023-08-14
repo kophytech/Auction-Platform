@@ -1,0 +1,468 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/loader.css">
+
+    <!-- stylesheet for fontawesome icons -->
+    <link  rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/fontawesome.min.css">
+
+    <link  rel="stylesheet" href="/css/animate.min.css">
+
+    <title>AUCTION</title>
+</head>
+<body>
+
+    <%-include('./includes/header')%>
+
+    <div class="header">
+        <div class="back"><i class="fa fa-chevron-left"></i></div>
+        <div class="text">Post</div>
+    </div>
+
+    <section>
+        <img src="/assets/postpictures/<%=post.image%>">
+
+        <div class="post-details">
+            <div class="post-content">
+                <input class="postid" value="<%=post.id%>" hidden>
+                <input class="postuser" value="<%=post.user%>" hidden>
+                <input class="chatroom" value="<%=post.chatroom%>" hidden>
+                <div class="user">
+                    <% if(user.image) { %>
+                        <Img src="/assets/profilepictures/<%=user.image%>">
+                    <% } else { %>
+                        <Img src="/assets/userpicture.png">
+                    <% } %>
+                    <div class="username"><%=user.username%></div>
+                    <input class="postdate" value="<%=post.date%>" hidden>
+                    <div class="postdate"></div>
+                    <%if(userSession.username == 'admin') { %>
+                        <div class="trash" onclick="deletePost('<%=post._id%>')">
+                            <i class="fa fa-trash"></i>
+                        </div>
+                    <% } %>
+                </div>
+                <div class="caption">
+                    <%=post.caption%>
+                </div>
+                <div class="tags">
+                    <%for (var i = 0; i < post.hashtags.length; i++) { %>
+                        <a href="/auctions/<%=post.hashtags[i]%>"><div class="atag"><%=post.hashtags[i]%></div></a>
+                    <% } %>
+                </div>
+
+                <div class="post-status">
+                    <div class="postlikes">
+                        <div class="likeIcon" onclick="likePost('<%=post._id%>')">
+                            <% if(post.likes.includes(userSession.username)) { %>
+                                <i class="fa fa-heart <%=post._id%> liked"></i>
+                            <% } else { %>
+                                <i class="fa fa-heart <%=post._id%> unliked"></i>
+                            <% } %>
+                        </div>
+                        <div class="nooflikes"><span class="digit"><%=post.likes.length%></span> likes</div>
+                    </div>
+                    <div class="live-status">
+                    <% if(post.live == true) { %>
+                        <i class="fa fa-video animate__animated  animate__flash animate__delay-2s animate__infinite infinite"></i>
+                        <div class="nooflikes">Live</div>
+                    <% } %>
+                    </div>
+                </div>
+
+                <div class="head">
+                    <div class="left">
+                        <div class="section-title">Bids</div>
+                        <i class="fa fa-circle"></i>
+                        <div class="amount-of-bids"><%=post.bids.length-1%></div>
+                        <input class="noofbids" value="<%=post.bids.length%>" hidden>
+                    </div>
+                    <div class="right">
+                        Starts at <span class="digit">$<%=post.bids[0].price%></span>
+                    </div>
+                </div>
+
+                <div class="all-bids">
+
+                </div>
+            </div>
+
+            <input class="sessionUser" value="<%=userSession.username%>" hidden>
+            <% if(userSession.username != post.user) { %>
+                <div class="bid-input">
+                    <%var max = post.bids.length - 1%>
+                        <div class="msg"></div>
+                        <input class="minprice" value="<%=post.bids[post.bids.length-1].price%>" hidden>
+                        <div class="bottom">
+                            <input class="biddingprice" type="number" min="<%=post.bids[post.bids.length-1].price%>" maxlength="9" pattern='\\d*' oninput="javascript: if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" placeholder="Type In Amount To Bid">
+                            <button class="submitbid" disabled>Place Bid</button>
+                        </div>
+                </div>
+            <% } %>
+        </div>
+
+    </section>
+
+    <footer>
+        <div><a href="/home"><i class="fa fa-home"></i></a></div>
+        <div><a href="/search"><i class="fa fa-search"></i></a></div>
+        <div><a href="/newpost"><i class="fa fa-camera"></i></a></div>
+        <!-- <div><a href="/notifications"><i class="fa fa-bell"></i></a></div> -->
+        <div class="user-profile">
+            <a href="/user/<%=userSession.username%>">
+                <button class="with-image">
+                    <% if(userSession.image) { %>
+                        <Img src="/assets/profilepictures/<%=userSession.image%>">
+                    <% } else { %>
+                        <Img src="/assets/userpicture.png">
+                    <% } %>
+                    <div class="username"><%=userSession.username %></div>
+                    <i class="fa fa-caret-down options-indicator"></i>
+                </button>
+            </a>
+        </div>
+    </footer>
+
+
+    <div class="loader-wrapper">
+        <div class="loadingio-spinner-rolling-r42hcymfq0f">
+            <div class="ldio-jay0zj72el">
+                <div></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/jquery-3.5.1.js"></script>
+    <script src="/js/search.js"></script>
+    <script src="/js/post.js"></script>
+    <script>
+
+        var sessionUser = $('input.sessionUser').val(),
+        postId = $('input.postid').val(),
+        postUser = $('input.postuser').val(),
+        minprice = $('input.minprice').val(),
+        chatroom = $('input.chatroom').val();
+
+        var allBids = [];
+
+        $(document).ready(function(){
+            // selecting winning bid
+            $('div.postdate').html(`${dateCreated($('input.postdate').val())}`);
+
+            $('input.biddingprice').keyup(function(){
+                if($('input.biddingprice').val() != ''){
+                    $('button.submitbid').attr('disabled', false);
+                } else {
+                    $('button.submitbid').attr('disabled', true);
+                }
+            });
+
+            $('button.submitbid').click(function(){
+                if(Number($('input.biddingprice').val() )> minprice){
+                    var newBid = {
+                        price: $('input.biddingprice').val(),
+                        postId: postId
+                    }
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '/newbid',
+                        dataType: 'json',
+                        data: newBid,
+                        success: function(data){
+                            if(data.bidSubmitted){
+                                fetchAllBids();
+                            }
+                        },
+                        error: function(data){
+
+                        }
+                    });
+
+                } else {
+                    $('div.bid-input>div.msg').html(`You have to bid higher than ${minprice}`)
+                }
+            });
+
+            fetchAllBids();
+        })
+
+        function fetchAllBids(){
+            $.ajax({
+                type: 'GET',
+                url: `/fetchbids/${postId}`,
+                success: async function(data){
+                   allBids = data.allBids;
+                   $('div.all-bids').html('');
+                   for(var i = 0; i < data.allBids.length; i++){
+                        if(i != 0){
+                            await $.ajax({
+                            type: 'GET',
+                            url: `/fetchuser/${data.allBids[i].bidder}`,
+                            success: function(data){
+                                $('div.all-bids').append(`
+                                    <div class="bid ${i}">
+                                        <div class="meta-data">
+                                            <input class="bidid ${i}" value="${allBids[i]._id}" hidden>
+
+                                            <div class="bidder">
+                                                ${detUserImage(data.user.image)}
+                                                <div class="name">${data.user.username}</div>
+                                            </div>
+                                            <div class="date">${dateCreated(allBids[i].date)}</div>
+                                            <div class="options-button ${i}">
+                                                ${detBidOptions(i, allBids[i].bidder, allBids[i].winner)}
+                                                <i class="fa fa-caret-down ${i}" onclick="showOptions('${i}')"></i>
+                                            </div>
+                                        </div>
+
+                                        <div class="bid-details">
+                                            <div class="price">${allBids[i].price}</div>
+                                            ${detIfWinner(allBids[i].winner, chatroom)}
+                                        </div>
+                                    </div>
+                                `);
+                            }
+                        });
+
+                        }
+                    }
+                }
+            });
+        }
+
+        function detBidOptions(position, bidder, winner){
+            if(postUser == sessionUser){
+                if(winner == true){
+                    return `<div class="options-list ${position}" style="display: none;">
+                            <div class="deselect-winner" title="Deselect As Winner" onclick="deselectAsWinner('${position}')"><i class="fa fa-times-circle"></i></div>
+                            <div class="close-options ${position}" title="Close" onclick="closeOptions('${position}')"><i class="fa fa-times"></i></div>
+                        </div>`;
+                } else {
+                    return `<div class="options-list ${position}" style="display: none;">
+                        <div class="select-winner" title="Select As Winner" onclick="selectAsWinner('${position}')"><i class="fa fa-check-circle"></i></div>
+                        <div class="close-options ${position}" title="Close" onclick="closeOptions('${position}')"><i class="fa fa-times"></i></div>
+                    </div>`;
+                }
+            } else if (sessionUser == bidder){
+                return `<div class="options-list ${position}" style="display: none;">
+                            <div class="delete-bid" title="Delete Bid" onclick="deleteBid('${position}')"><i class="fa fa-trash"></i></div>
+                            <div class="close-options ${position}" title="Close" onclick="closeOptions('${position}')"><i class="fa fa-times"></i></div>
+                        </div>`;
+            } else {
+                return ``;
+            }
+        }
+
+        function detIfWinner(winner, chatroom){
+
+            console.log(winner, chatroom)
+            if(winner == true){
+                return`
+                    <div class="bid-actions">
+                        <a href="/chatroom/${chatroom}"><div class="chat"><i class="fa fa-comment"></i></div></a>
+                        <div class="banner"><i class="fa fa-circle"></i></div>
+                    </div>
+                `;
+            } else {
+                return ``;
+            }
+        }
+
+        function detUserImage(userImage){
+            if(userImage == undefined){
+                return '<Img src="/assets/userpicture.png">';
+            } else {
+                return `<Img src="/assets/profilepictures/${userImage}">`;
+            }
+        }
+
+        function showOptions(count){
+            for(var i = 0; i < allBids.length; i++){
+                closeOptions(i);
+            }
+            $(`div.options-list.${count}`).css('display', 'flex');
+        }
+
+        function closeOptions(count){
+            $(`div.options-list.${count}`).css('display', 'none');
+        }
+
+        function deleteBid(count){
+            var bidid = $(`input.bidid.${count}`).val();
+
+            $.ajax({
+                type: 'GET',
+                url: `/deletebid/${bidid}/${postId}`,
+                success: function(data){
+                    if(data.bidDeleted){
+                        $(`div.bid.${count}`).remove();
+                        $('div.amount-of-bids').html(`${data.noofbids}`);
+                    }
+
+                    if(data.isLive == true){
+                        $('div.live-status').html(`
+                            <i class="fa fa-video animate__animated  animate__flash animate__delay-2s animate__infinite infinite"></i>
+                            <div class="nooflikes">Live</div>
+                        `);
+                    } else {
+                        $('div.live-status').html(``);
+                    }
+                }
+            });
+        }
+
+        function selectAsWinner(count){
+            $.ajax({
+                type: 'POST',
+                url: '/selectbidaswinner',
+                data: {bidId: $(`input.bidid.${count}`).val(), postId, biddername: $(`div.bid.${count}  div.bidder > div.name`).html(), price: $(`div.bid.${count} > div.bid-details > div.price`).html()},
+                success: function(data){
+                    console.log(data);
+                    if(data.setAsWinner == true){
+                         $('div.live-status').html('');
+
+                        console.log();
+
+                        for(var i = 0; i <= Number($('div.bid').length); i++){
+                            $(`div.bid.${i} div.bid-details div.bid-actions`).remove();
+                            $(`div.options-list.${i}`).html(`
+                                <div class="select-winner" title="Select As Winner" onclick="selectAsWinner('${i}')"><i class="fa fa-check-circle"></i></div>
+                                <div class="close-options ${i}" title="Close" onclick="closeOptions('${i}')"><i class="fa fa-times"></i></div>
+                            `).css('display', 'none');
+                        }
+
+                        $(`div.options-list.${count}`).html(`
+                            <div class="deselect-winner ${count}" title="Deselect As Winner" onclick="deselectAsWinner('${count}')"><i class="fa fa-times-circle"></i></div>
+                            <div class="close-options ${count}" title="Close" onclick="closeOptions('${count}')"><i class="fa fa-times"></i></div>
+                        `).css('display', 'none');
+
+                        $(`div.bid.${count} div.bid-details`).append(`
+                            <div class="bid-actions">
+                                <a href="/chatroom/${data.chatId}"><div class="chat"><i class="fa fa-comment"></i></div></a>
+                                <div class="banner"><i class="fa fa-circle"></i></div>
+                            </div>
+                        `);
+                    } else {
+
+                    }
+                }
+            });
+        }
+
+        function deselectAsWinner(count){
+            $.ajax({
+                type: 'POST',
+                url: '/deselectwinner',
+                data: {bidId: $(`input.bidid.${count}`).val(), postId},
+                success: function(data){
+                    if(data.deselectedWinner == true){
+                        $('div.live-status').html(`
+                            <i class="fa fa-video animate__animated  animate__flash animate__delay-2s animate__infinite infinite"></i>
+                            <div class="nooflikes">Live</div>
+                        `);
+
+                        $(`div.options-list.${count}`).html(`
+                            <div class="select-winner" title="Select As Winner" onclick="selectAsWinner('${count}')"><i class="fa fa-check-circle"></i></div>
+                            <div class="close-options ${count}" title="Close" onclick="closeOptions('${count}')"><i class="fa fa-times"></i></div>
+                        `).css('display', 'none');
+
+                        $(`div.bid.${count} div.bid-details div.bid-actions`).remove();
+                    } else {
+
+                    }
+                }
+            });
+        }
+
+        function hideAllOptions(count){
+            for(var i = 0; i < $('div.options').length; i++){
+                $(`i.icon.${i}`).removeClass('fa-caret-up');
+                $(`i.icon.${i}`).addClass('fa-caret-down')
+                $(`div.options.${i}`).attr('hidden', true);
+            }
+        }
+
+        function likePost(postId){
+            $.ajax({
+                type: 'POST',
+                url: '/likepost',
+                dataType: 'json',
+                data: {postId},
+                success: function(data){
+                    if(data.likedPost){
+                        $('div.nooflikes>span.digit').html(`${data.likesno}`);
+                        $(`i.fa-heart.${postId}`).addClass('animate__heartBeat');
+                        $(`i.fa-heart.${postId}`).addClass('liked');
+                    }
+                    else if(data.unlikedPost){
+                        $('div.nooflikes>span.digit').html(`${data.likesno}`);
+                        $(`i.fa-heart.${postId}`).removeClass('animate__heartBeat');
+                        $(`i.fa-heart.${postId}`).removeClass('liked');
+                    }
+                },
+                error: function(error){
+
+                }
+            });
+        }
+
+        function dateCreated(date){
+            var currentDate = new Date();
+            date = new Date(date);
+
+            var timeInMilliseconds = currentDate.getTime() - date.getTime(),
+            timeInSeconds = timeInMilliseconds / 1000,
+            timeInMinutes = timeInSeconds / 60,
+            timeInHours = timeInSeconds / 3600,
+            timeInDays  = timeInHours / 24,
+            timeInMonths  = timeInHours / 30,
+            timeInYear  = timeInMonths / 12;
+
+            if(timeInSeconds < 60){
+                return `${Math.floor(timeInSeconds)}s`;
+            } else if(timeInMinutes < 60){
+            return `${Math.floor(timeInMinutes)}m`;
+            } else if(timeInHours < 24){
+                return `${Math.floor(timeInHours)}hr`;
+            } else if(timeInDays < 30){
+            return `${Math.floor(timeInDays)}days`;
+            } else if(timeInMonths < 12){
+                return `${Math.floor(timeInMonths)}mon`
+            } else {
+                return `${Math.floor(timeInYear)}yr`;
+            }
+        }
+
+        function deletePost(postId){
+            $.ajax({
+                type: 'GET',
+                url: `/deletepost/${postId}`,
+                success: (response)=>{
+                    if(response.error){
+                        alert('There was an error trying to delete post.');
+                    } 
+                    else if(!response.authorizedAccess){
+                        alert('You arent authorized to delete this post.');
+                    } 
+                    else if(response.postDeleted){
+                        alert('This post has been deleted.');
+                        window.location.pathname = '/home';
+                    }
+                },
+                error: (error)=>{
+
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
+
