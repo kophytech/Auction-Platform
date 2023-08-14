@@ -1,0 +1,471 @@
+section.user{
+    margin: 60px 0px 0px;
+    width: 100%;
+}
+div.user-info{
+    width: 70%;
+    margin: 0% auto;
+    padding: 4% 5% 0%;
+    display: flex;
+    justify-content: center;
+    /* border: 1px solid black; */
+}
+div.user-info img{
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+div.user-info i.fa-user-circle{
+    font-size: 1000%;   
+}
+div.user-info div.info{
+    width: 50%;
+    margin: 0% 0% 0% 5%;
+    padding: 1% 0% 0% 0%;
+}
+div.user-info div.name{
+    margin: auto 0%;
+    padding: 0% 5% 0% 0%;
+    width: max-content;
+    font-weight: 700;
+    font-size: 200%;
+    text-transform: capitalize;
+}
+div.mobile-nav{
+    display: none;
+}
+div.top{
+    display: flex;
+}
+button.follow, button.unfollow, button.editprofile{
+    outline: none;
+    width: 120px;
+    height: 40px;
+    margin: auto 0%;
+    color: white;
+    border: 1px solid black;
+    background: black;
+    border: none;
+    border-radius: 3px;
+    font-weight: 700;
+    cursor: pointer;
+}
+button.unfollow{
+    color: black;
+    background: none;
+    border: 1px solid lightgrey;
+}
+div.middle{
+    display: flex;
+    justify-content: space-between;
+    color: rgb(97, 97, 97);
+    font-size: 85%;
+    width: 45%; 
+    margin: 0% auto 0%;
+    padding: 2% 0%;
+}
+div.middle *{
+    /* margin: auto 1%  0%; */
+}
+div.middle>div{
+    display: flex;
+    font-weight: 600%;
+    align-items: center;
+}
+div.middle span.digit{
+    font-weight: 700;
+    font-size: 130%;
+    color: rgb(19, 19, 19);
+}
+div.bottom{
+    font-size: 90%;
+    margin: 2% 0% 0%;
+}
+
+section.user-content{
+    width: 70%;
+    margin: 0% auto;
+    padding: 2% 0% 0% 0%;
+    border-top: 1px solid rgb(240, 240, 240);
+}
+div.user-content{
+    display: flex;
+    justify-content: space-between;
+}
+
+div.photo_column{
+    width: 32%;
+    margin: 0% 0px 0% 0%;
+}
+div.photo_frame{
+    height: fit-content;
+    margin: 0% 0% 15px 0%;
+    position: relative;
+}
+div.photo_frame img{
+    display: block;
+    width: 100%;
+}
+div.photo_frame div.info{
+    position: absolute;
+    background: linear-gradient( -180deg, rgba(0, 0, 0, 0.097), rgba(0, 0, 0, 0.898));
+    left: 0%;
+    top: 0%;
+    width: 100%;
+    height: 100%;
+    color: white;
+    opacity: 0;
+    transition: 0.5s;
+}
+div.photo_frame div.info>a{
+    height: 100%;
+     display: flex;
+}
+div.photo_frame:hover div.info{
+    opacity: 1;
+    transition: 0.5s;
+}
+div.info div.info-details{
+    padding: 3%;
+    position: absolute;
+    bottom: 0%;
+    width: 93%;
+}
+div.info div.title{
+    padding: 2% 0%;
+    font-weight: 700;
+    font-size: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;   
+}
+div.bids{
+    font-size: 90%;
+    position: absolute;
+    right: 0%;
+    top: 0%;
+    width: 50%;
+    padding: 3% 5%;
+    text-align: right;
+}
+span.no-of-bids{
+    font-weight: 700;
+    font-size: 110%;
+}
+span.price{
+    border: 1px solid white;
+    background: white;
+    color: black;
+    border-radius: 25px;
+    font-size: 110%;
+    padding: 1%;
+    font-weight: 700;
+}
+
+div.nopost{
+    width: 100%;
+    height: 40vh;
+    font-size: 150%;    
+    font-weight: 500;
+    display: flex;
+}
+div.nopost>div.text{
+    margin: auto;
+    font-size: 150%;
+    color: black;
+    font-weight: 500;
+}
+
+section.follow{
+    background: rgba(0, 0, 0, 0.575);
+    position: fixed;
+    justify-content: center;
+    top: 0%; 
+    left: 0%;
+    margin: 0%;
+    width: 100%;
+    height: 100vh;
+}
+section.follow>div.overlay{
+    background: rgba(0, 0, 0, 0.575);
+    width: 100%;
+    height: 100vh;
+}
+section.follow div.users{
+    border: 1px solid rgb(240, 240, 240);
+    background: white;
+    border-radius: 10px;
+    max-height: 80vh;
+    width: 30%;
+    top: 10vh;
+    position: absolute;
+}
+div.users div.title{
+    display: flex;
+    justify-content: space-between;
+    padding: 3%;
+    border-bottom: 2px solid rgb(240, 240, 240);
+}
+div.users div.title span{
+    font-size: 100%;
+    font-weight: 700;
+}
+div.users div.title i.fa-times{
+    font-size: 120%;
+    cursor: pointer;
+}
+div.users div.list{
+    padding: 0% 5%;
+}
+div.follower{
+    margin: 0% auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5% 0%;
+}
+div.follower>a{
+    width: 80%;
+    color: inherit;
+} 
+div.follower div{
+    width: 80%;
+    display: flex;
+}
+div.follower img{
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+div.follower div.name{
+    margin: auto 0% auto 3%;
+    font-size: 90%;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+div.follower button{
+    cursor: pointer;
+    outline: none;
+    padding: 2% 0%;
+    width: 90px;
+    margin: auto 0%;
+    color: white;
+    background: black;
+    font-weight: 700;
+    font-size: 80%;
+    border: none;
+    border-radius: 3px;
+    justify-self: end;
+}
+div.nofollower{
+    padding: 4% 0%;
+    font-size: 100%;
+    font-weight: 700;
+    color: grey;
+    display: flex;
+    justify-content: center;
+}
+div.follower button.unfollow-btn{
+    color: black;
+    background: none;
+    border: 1px solid lightgrey;
+}
+div.followers, div.following{
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 1024px){
+    div.user-info div.info{
+        width: 60%;
+    }
+    div.middle{
+        width: 55%; 
+    }
+
+    section.follow div.users{
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 950px){
+    div.user-info{
+        width: 90%;
+        padding: 6% 5% 4%;
+    }
+    div.user-info img{
+        width: 100px;
+        height: 100px;
+    }
+    div.user-info i.fa-user-circle{
+        font-size: 800%;   
+    }
+    div.user-info div.info{
+        font-size: 90%;
+    }
+    div.user-info div.name{
+        font-size: 160%;
+    }
+    button.follow, button.unfollow, button.editprofile{
+        width: 90px;
+        height: 30px;
+        font-size: 70%;
+    }
+    div.middle{
+        width: 70%; 
+        font-size: 70%;
+    }
+    
+    section.user-content{
+        width: 80%;
+    }
+    div.photo_frame div.info{
+        display: none;
+    }
+    div.photo_frame:hover div.info{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 700px){
+    div.user-info i.fa-user-circle{
+        font-size: 800%;   
+    }
+    div.user-info div.info{
+        font-size: 90%;
+    }
+    div.user-info div.name{
+        font-size: 150%;
+    }
+
+    div.nopost>div.text{
+        font-size: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px){  
+    div.user-info{
+        padding: 3% 5%;
+    }
+    div.user-info div.info{
+        width: 50%;
+    }
+    div.top{
+        display: block;
+    }
+    div.top > div.name, div.top > div.button{
+        display: inline-block;
+    }
+    div.user-info i.fa-user-circle{
+        font-size: 700%;
+    }
+    div.user-info div.name{
+        font-size: 130%;
+    }
+    div.middle{
+        width: 65%; 
+    }
+    section.follow div.users{
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    section.user{
+        margin: 50px 0px 0px;
+    }
+    div.user-info{
+        width: 90%;
+        margin: 0% 0%;
+        padding: 4% 5% 0%;
+        display: flex;
+        justify-content: left;
+    }
+    div.user-info div.info{
+        width: 50%;
+    }
+    div.user-info img{
+        width: 80px;    
+        height: 80px;
+    }
+    div.middle{
+        width: 100%;
+        justify-content: space-evenly;
+    }
+}
+
+@media only screen and (max-width: 450px){
+    div.middle{
+        border-top: 1px solid lightgrey;
+        border-bottom: 1px solid lightgrey;
+        margin: 4% 0% 0%;
+        width: 100%;
+        justify-content: space-evenly;
+    }
+    div.middle > div{
+        display: block;
+        text-align: center;
+        padding: 1% 0%;
+        font-size: 85%;
+    }
+
+    section.user-content{
+        border-top: none;
+        padding: 0%;
+        width: 100%;
+    }
+    div.photo_column{
+        width: 33%;
+    }
+    div.photo_frame{
+        margin: 0% 0% 2% 0%;
+        height: 100px;
+    }
+    div.photo_frame img{
+        object-fit: cover;
+        object-position: center;
+    }
+
+    section.follow div.users{
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 400px){  
+    div.user-info div.info{
+        width: 85%;
+    }
+    div.user-info img{
+        width: 85px;
+        height: 85px;
+    }
+    div.user-info i.fa-user-circle{
+        font-size: 800%;   
+    }
+    div.user-info div.info{
+        font-size: 110%;
+    }
+    div.user-info div.name{
+        font-size: 110%;
+    }
+    button.follow, button.unfollow, button.editprofile{
+        width: 80px;
+        height: 30px;
+        font-size: 65%;
+    }
+    
+    div.middle{
+        font-size: 85%;
+    }
+    div.middle span.digit{
+        font-size: 110%;
+    }
+    div.photo_frame img{
+        object-fit: cover;
+        object-position: center;
+        -o-object-fit: cover;
+        -o-object-position: center;
+    }
+}

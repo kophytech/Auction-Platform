@@ -1,0 +1,197 @@
+section.body{
+    display: flex;
+    margin-top: 60px;
+    position: relative;
+
+}
+div.all-users{
+    width: 60%;
+    padding: 2%;
+    padding-left: 5%;
+}
+div.all-users div.title{
+    font-weight: 700;
+    font-size: 150%;
+}
+div.all-users div.list{
+   margin-top: 20px;
+   padding: 2% 0%;
+}
+div.all-users div.list div.user {
+    background: white;
+    box-shadow: 0px 0px 10px 1px rgb(237, 237, 237);
+    margin-bottom: 2%;
+    width: 70%;
+    height: 110px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+div.all-users div.list div.user img {
+   width: 70px;
+   height: 70px;
+   border-radius: 50%;
+   border: 2px solid rgba(36, 29, 102, 0.76);
+   padding: 4px;
+   margin-left: 5%;
+}
+div.all-users div.list div.user > div.info {
+    margin-left: 5%;
+    width: 70%;
+}
+div.all-users div.list div.user > div.info div.name{
+    font-weight: 700;
+}
+div.all-users div.list div.user > div.info div.top{
+    display: flex;
+    justify-content: space-between;
+}
+div.all-users div.list div.user > div.info div.top i.fa{
+    font-size: 120%;
+    cursor: pointer;
+}
+div.all-users div.list div.user > div.info div.top i.fa-trash{
+    color: crimson;
+}
+
+div.all-users div.list div.user > div.info div.details{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2%;
+    width: 100%;
+    font-size: 90%;
+}
+div.all-users div.list div.user > div.info div.details div.label{
+    font-size: 90%;
+    font-weight: 700;
+    color: grey;
+}
+div.boards{
+    background: rgba(207, 205, 221, 0.104);
+    position: fixed;
+    right: 0;
+    top: 60px;
+    height: 93vh;
+    width: 25%;
+    padding: 2%;
+    margin: 0% auto;
+}
+div.boards > div{
+    border: 2px solid rgba(36, 29, 102, 0.76);
+    background: white;
+    height: 150px;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center;
+}
+div.boards i.fa{
+    font-size: 80px;
+    margin-left: 5%;
+    color: rgba(36, 29, 102, 0.76);
+}
+div.boards div.content{
+    margin-left: 5%;
+    font-weight: 800;
+}
+div.boards div.content div.count{
+    font-size: 300%;
+    font-weight: 500;
+}
+
+
+div.delete-frame{
+    position: fixed;
+    z-index: 5;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div.delete-frame div.layer{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgb(0, 0, 0, 0.5);
+    z-index: -1;
+}
+div.delete-frame div.delete-box {
+    background: white;
+    width: 25%;
+    height: 35vh;
+    border-radius: 10px;
+    text-align: center;
+    /* position: fixed; */
+}
+div.delete-box div.text{
+    margin-top: 10%;
+    font-size: 150%;
+    padding: 0% 5%;
+    font-weight: 700;
+}
+div.delete-box div.options{
+    margin-top: 25%;
+    padding: 0% 5%;
+    display: flex;
+    justify-content: space-around;
+}
+div.delete-box div.options button{
+    width: 40%;
+    padding: 3% 0%;
+    border-radius: 5px;
+    cursor: pointer;
+    outline: none;
+}
+div.options button.cancel{
+    border: 1px solid lightgrey;
+    font-weight: 700;
+    color: grey;
+    background: white;
+}
+div.options button.delete{
+    border: 1px solid crimson;
+    font-weight: 700;
+    color: white;
+    background: crimson;
+}
+.hidden{
+    display: none !important;
+}
+
+div.errormessage{
+    position: fixed;
+    bottom: 1vh;
+    left: 9vh;
+    height: 50px;
+    border: 1px solid crimson;
+    background: rgba(220, 20, 60, 0.138);
+    /* width: 30%; */
+    padding: 0% 1%;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+div.errormessage > div.text {
+    color: rgb(26, 26, 26);
+    font-size: 90%;
+    font-weight: 700;
+    display: flex;
+}
+div.errormessage > i.fa{
+    border: 1px solid rgb(26, 26, 26);
+    margin-left: 5%;
+    color: white;
+    background: rgb(26, 26, 26);
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 120%;
+    border-radius: 50%;
+}
+

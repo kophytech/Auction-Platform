@@ -1,0 +1,135 @@
+div.header{
+    display: none;
+}
+section{
+    margin: 50px auto 0px;
+    width: 80%;
+}
+div.topic{
+    padding: 2% 0%;
+    display: flex;
+}
+div.topic > * {
+    margin: auto 0%;
+}
+section div.icon{
+    border: 1px solid lightgrey;
+    display: flex;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+div.icon i.fa-hashtag{
+    margin: auto;
+    color: lightgrey;
+}
+div.tag-info{
+    padding: 0% 2%;
+}
+div.tag-title{
+    font-size: 200%;
+}
+div.post-no{
+    font-size: 150%;
+}
+span.digit{
+    font-weight: 700;
+}
+span.text{
+    font-size: 80%;
+}
+
+div.all-posts{
+    margin: 10px 0% 0%;
+}
+div.all-posts img{
+    width: 450px;
+    height: 400px;
+    margin: 0% 1% 1% 0%;
+    object-fit: cover;
+}
+
+@media only screen and (max-width: 1024px){
+    section{
+        margin: 60px auto 0px;
+        width: 90%;
+    }
+    div.icon{
+        width: 60px;
+        height: 60px;
+    }
+    div.all-posts img{
+        width: 32.4%;
+        height: 250px;
+        margin: 0% 0.5% 0.5% 0%;
+        object-fit: cover;
+    
+    }
+}
+
+@media only screen and (max-width: 600px){
+    header{
+        display: none !important;
+    }
+    div.header{
+        display: flex;
+        height: 50px;
+        border-bottom: 1px solid rgb(226, 226, 226);
+        font-size: 110%;
+        font-weight: 700;
+        position: fixed;
+        top: 0%;
+        width: 100%;
+        background: white;
+    }
+    div.header > * {
+        margin: auto 0%;
+    }
+    div.header div.back{
+        padding: 0% 0% 0% 2%;
+    }
+    div.tag-info{
+        padding: 0% 2% 0% 0%;
+        margin: auto;
+        text-align: center;
+    }
+    div.tag-title{
+        font-size: 100%;
+    }
+    div.post-no{
+        font-size: 90%;
+        color: grey;
+        font-weight: 500;
+    }
+    span.digit{
+        font-size: 80%;
+    }
+    span.text{
+        font-size: 80%;
+    }
+    section{
+        margin: 40px 0px 0px;
+        width: 95%;
+    }
+    div.topic{
+        display: none;
+    }
+    div.all-posts img{
+        width: 32.1%;
+        height: 170px;
+        margin: 0% 0.5% 0.5% 0%;
+        object-fit: cover;
+    
+    }
+}
+
+@media only screen and (max-width: 500px){
+    section{
+        width: 100%;
+    }
+    div.all-posts img{
+        width: 32%;
+        height: 20vh;
+        margin: 0% 0.1% 0.1% 0%;   
+    }
+}

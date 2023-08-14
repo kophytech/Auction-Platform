@@ -1,0 +1,150 @@
+*{
+    margin: 0px;
+    font-family: 'montserrat';
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+div.header{
+    border-bottom: 1px solid rgb(230, 230, 230);
+    padding: 2% 0%;
+    text-align: center;
+    font-weight: 700;
+    font-size: 110%;    
+}
+
+section{
+
+}
+div.no-notifications{
+    display: flex;
+    height: 100vh;
+}
+div.no-notifications div{
+    color: black;
+    margin: auto;
+    text-align: center;
+    width: 85%;
+    font-weight: 700;
+    color: grey;
+}
+div.no-notifications div.icon{
+    border: 1px solid rgb(209, 209, 209);
+    width: 120px;
+    height: 120px;
+    display: flex;
+    border-radius: 50%;
+    margin: 0% auto 5%;
+}
+div.no-notifications i.fa{
+    font-size: 500%;
+    color: rgb(209, 209, 209);
+    margin: auto;
+}
+
+div.a-notification{
+    height: 50px;
+    display: flex;
+    padding: 0% 2% 3%;
+    border-top: 1px solid rgb(230, 230, 230)
+}
+div.a-notification:nth-child(1){
+    border: none;
+}
+div.a-notification > *{
+    margin: auto 0% 0%;
+}
+div.a-notification img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+div.notif-info{
+    color: black;
+    padding: 0% 2%;
+    width: 50%;
+}
+div.notif-info div.user{
+    font-weight: 700;
+}
+div.notif-info div.content{
+    font-weight: 400;
+}
+div.a-notification div.date{
+    font-size: 90%;
+}
+div.a-notification button{
+    margin: auto 0% 0% auto;
+    width: 20%;
+    padding: 2% 0%;
+    background: black;
+    border: 1px solid black;
+    color: white;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+}
+div.a-notification div.liked{
+    margin: auto 0% 0% auto;
+    width: 20%;
+    text-align: center;
+}
+div.liked i.fa-heart{
+    font-size: 220%;
+    color: crimson;
+}
+
+footer{
+    display: flex;
+    position: fixed;
+    bottom: 0%;
+    z-index: 10;
+    box-shadow: -3px 0px 15px 0px rgba(0, 0, 0, 0.342);
+    background: rgb(29, 28, 27);
+    width: 90%;
+    justify-content: space-between;
+    color: rgb(209, 209, 209);
+    padding: 2% 5%;
+}
+footer *{
+    margin: auto 0%;
+}
+div.current-nav{
+    font-weight: 900;
+    font-size: 105%;
+    color: white;
+}
+i.fa-caret-down, i.fa-caret-up{
+    display: none;
+}
+footer i.fa{
+    font-size: 150%;
+}
+footer div.username{
+    display: none;
+}
+div.user-profile button{
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    background: none;
+    outline: none;
+    overflow: hidden;
+    border-radius: 5px;
+    width: 100%;
+}
+button.with-image>img{
+    border: 1px solid rgb(255, 193, 36);
+    width: 22px;
+    height: 22px;
+    padding: 2px;
+    border-radius: 50%;
+}

@@ -1,0 +1,193 @@
+section.body{
+    display: flex;
+    justify-content: center;
+    padding: 2% 0%;
+    margin: 60px 0% 0%;
+}
+section.all{
+    width: 85%;
+    display: flex;
+}
+div.photo_column{
+    width: 33%;
+    margin: 0% 15px 0% 0%;
+}
+div.photo_frame{
+    height: fit-content;
+    margin: 0% 0% 15px 0%;
+    position: relative;
+    /* border: 1px solid lightgrey; */
+    box-shadow: 0px 3px 15px 1px rgba(0, 0, 0, 0.219);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: 0.7s;
+}
+div.photo_frame div{
+    background: white;
+}
+div.photo_frame img{
+    display: block;
+    width: 100%;
+}
+div.info{
+    padding: 3%;
+    bottom: 0%;
+    width: 93%;
+}
+div.info div.caption{
+    padding: 1% 0%;
+    font-size: 80%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;   
+}
+div.top{
+    display: flex;
+    justify-content: space-between;
+}
+div.date{
+    margin: auto 0%;
+    font-size: 70%;
+    color: grey;
+    font-weight: 500;
+}
+div.info div.user{
+    display: flex;
+}
+div.info div.user img{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+div.info div.name{
+    font-size: 80%;
+    font-weight: 700;
+    margin: auto 0% auto 10%;
+    text-transform: capitalize;
+}
+div.bids{
+    font-size: 80%;
+    margin: auto 0%;
+}
+span.no-of-bids{
+    font-weight: 700;
+    font-size: 110%;
+}
+span.price{
+    background: rgb(11, 61, 224);
+    color: white;
+    border-radius: 25px;
+    font-size: 100%;
+    padding: 4px 5px;
+    font-weight: 700;
+}
+div.actions{
+    border-top: 1px solid lightgrey;
+    padding: 2% 3%;
+    display: flex;
+    justify-content: space-between;
+}
+div.postlikes{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 30%
+}
+div.nooflikes{
+    font-weight: 600;
+    font-size: 90%;
+    margin: auto 10% auto 0%;
+}
+div.likeIcon{
+    margin: 0% 5%;
+    display: flex;
+}
+div.actions i.fa{
+    font-size: 180%;
+}
+i.fa.liked{
+    color: crimson;
+}
+i.fa.unliked{
+    color: grey;
+}
+i.fa-heart{
+    color: grey;
+    cursor: pointer;
+}
+div.noauction{
+    margin: 25vh auto;
+    font-size: 130%;
+    font-weight: 500;
+    color: silver;
+    text-align: center;
+}
+
+@media only screen and (max-width: 1024px){
+    section.all{
+        width: 95%;
+    }
+}
+
+@media only screen and (max-width: 700px){
+    section.all{
+        display: block;
+    }
+    div.photo_column{
+        width: 80%;
+        margin: 0% auto;
+    }
+    div.info{
+        font-size: 140%;
+    }
+    div.info img{
+        width: 40px;
+        height: 40px;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    section.all{
+        display: block;
+    }
+    div.photo_column{
+        width: 90%;
+        margin: 0% auto 0%;
+    }
+    div.info{
+        font-size: 140%;
+    }
+    div.info img{
+        width: 40px;
+        height: 40px;
+    }
+    div.photo_frame{
+        margin: 0% 0% 10% 0%;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    section.body{
+        margin: 43px 0% 1%;
+    }
+    section.all{
+        width: 100%;
+    }
+    div.photo_column{
+        width: 100%;
+    }
+    div.photo_frame{
+        width: 100%;
+        border: none;
+        border-bottom: 1px solid lightgrey;
+        border-radius: 0px;
+    }
+    div.info{
+        font-size: 100%;
+    }
+    div.info img{
+        width: 25px;
+        height: 25px;
+    }
+}

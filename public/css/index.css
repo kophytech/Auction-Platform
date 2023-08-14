@@ -1,0 +1,224 @@
+*{
+    margin: 0px;
+    font-family: "montserrat";
+}
+
+img{
+    width: 100%;
+    height: 100%;
+}
+section.uppermost{
+    height: 100vh;
+}
+div.toplayer{
+    background: rgba(0, 0, 0, 0.768);
+    height: 100vh;
+    color: white;
+}
+header{
+    display: flex;
+    padding: 0% 5%;
+    justify-content: space-between;
+    height: 100px;
+}
+header *{
+    margin: auto 0%;
+}
+header div.logo{
+    font-weight: 800;
+    font-size: 200%;
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    font-size: 90%;
+    font-weight: 800;
+    width: unset;
+}
+div.signin{
+    font-size: 130%;
+    margin: auto 20% auto -20%;
+}
+nav > div.signup{
+    font-size: 100%;
+    padding: 15px;
+    border-radius: 25px;
+    text-align: center;
+    background: rgb(255, 193, 36);
+}
+div.body{
+    margin: 15% auto 0%;
+    text-align: center;
+    width: 60%;
+}
+div.text{
+    font-weight: 900;
+    font-size: 250%;
+    text-transform: capitalize;
+    line-height: 140%;
+}
+button.explore{
+    width: 150px;
+    margin: 5% 0% 0%;
+    padding: 1% 0%;
+    font-weight: 700;
+    font-size: 120%;
+    border: 3px solid white;
+    background: white;
+    color: rgb(255, 193, 36);
+    border-radius: 35px;
+    cursor: pointer;
+    outline: none;
+}
+button.explore:hover{
+    box-shadow: 0px 3px 5px 5px rgba(0, 0, 0, 0.123);
+    transition: 1s;
+}
+
+nav.more-items{
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 90%;
+    font-weight: 800;
+    margin-right: 5%;
+}
+nav>div{
+    cursor: pointer;
+}
+nav a{
+    color: inherit;
+}
+div.user-profile{
+    width: 60%;
+}
+i.fa-user-circle{
+    font-size: 250%;
+    color: lightgrey;
+}
+div.username{
+    margin: auto 0% auto 5%;
+    font-size: 100%;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: white;
+}
+div.user-profile button{
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    background: none;
+    outline: none;
+    overflow: hidden;
+    border-radius: 5px;
+    width: 100%;
+}
+button.without-image:active{
+    background: rgba(228, 228, 228, 0.63);
+}
+button.with-image:active{
+    background: rgba(228, 228, 228, 0.63);
+}
+button.with-image>img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+div.notification, .create-auction, .all-auction, .signout{
+    height: 70%;
+    margin: auto 5%;
+}
+i.fa-bell, i.fa-hashtag, i.fa-home{
+    font-size: 200%;
+}
+i.fa-caret-down, i.fa-caret-up{
+    font-size: 110%;
+    color: white;
+}
+div.user-profile-options{
+    border: 1px solid white;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.404);
+    position: absolute;
+    width: 200px;
+    padding: 0% 0%;
+    margin: 3px 0% 0% 0%;
+    background: white;
+    border-radius: 5px;
+    color: black;
+    font-weight: 500;
+    font-size: 90%;
+    overflow: hidden;
+}
+div.user-profile-options div{
+    padding: 5% 10%;
+}
+div.logout{
+    border-top: 1px solid rgb(235, 235, 235);
+}
+div.user-profile-options div:hover{
+    background: rgb(252, 252, 252);
+}
+footer{
+    width: 100%;
+    display: unset !important;
+}
+
+@media only screen and (max-width: 1024px){
+    header{
+        height: 80px;
+    }
+    nav{
+        width: unset;
+        justify-content: safe;
+    }
+    div.signin{
+        display: none;
+    }
+
+    div.body{
+        margin: 25vh auto 0%;
+        text-align: center;
+        width: 80%;
+    }
+    button.explore{
+        width: 200px;
+        padding: 2% 0%;
+    }
+}
+
+@media only screen and (max-width: 800px){
+    header{
+        padding: 0% 5%;
+        height: 100px;
+        font-size: 75%;
+    }
+    div.signup{
+        font-size: 120%;
+        padding: 10px 15px;
+    }
+
+    div.body{
+        margin: 25vh 5% 0%;
+        text-align: left;
+        width: 85%;
+    }
+    div.text{
+        font-size: 150%;
+        text-transform: capitalize;
+        line-height: 140%;
+    }
+    button.explore{
+        border-radius: 5px;
+        width: 150px;
+        font-size: 90%;
+        padding: 2% 0%;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    main{
+        margin-top: 40px;
+    }
+}

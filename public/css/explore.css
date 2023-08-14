@@ -1,0 +1,194 @@
+section.body{
+    margin: 60px 0% 0%;
+}
+div.tags{
+    margin: 0% auto;
+    width: 90%;
+    padding: 1% 0%;
+}
+div.list{
+    display: flex;
+    padding: 1% 0%;
+    width: 50%;
+}
+div.a-hashtag{
+    padding: 1%;
+    margin: 0% 2% 0% 0%;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 5px;
+    font-size: 100%;
+    font-weight: 700;
+    color: grey;
+    cursor: pointer;
+}
+div.a-hashtag.current{
+    border: 1px solid rgb(255, 193, 36);
+    background: rgb(255, 193, 36);
+    color: white;
+}
+div.posts{
+    margin: 0% auto 5%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+div.photo_column{
+    width: 33%;
+}
+div.photo_frame{
+    height: fit-content;
+    margin: 0% 0% 15px 0%;
+    position: relative;
+    border: 1px solid rgb(233, 233, 233);
+    border-radius: 5px;
+    overflow: hidden;
+}
+div.photo_frame img{
+    display: block;
+    width: 100%;
+}
+div.info{
+    padding: 3%;
+    bottom: 0%;
+    width: 93%;
+}
+div.info div.caption{
+    padding: 1% 0%;
+    font-size: 80%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;   
+}
+div.top{
+    display: flex;
+    justify-content: space-between;
+}
+div.date{
+    margin: auto 0%;
+    font-size: 80%;
+    color: grey;
+    font-weight: 600;
+}
+div.info div.user{
+    display: flex;
+}
+div.info img{
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+div.info div.name{
+    font-size: 80%;
+    font-weight: 700;
+    margin: auto 0% auto 2%;
+    text-transform: capitalize;
+}
+div.bids{
+    font-size: 80%;
+    margin: auto 0%;
+}
+span.no-of-bids{
+    font-weight: 700;
+    font-size: 110%;
+}
+span.price{
+    border: 1px solid black;
+    background: black;
+    color: white;
+    border-radius: 25px;
+    font-size: 110%;
+    padding: 5px;
+    font-weight: 700;
+}
+div.actions{
+    border-top: 1px solid rgb(233, 233, 233);
+    padding: 2% 3%;
+    display: flex;
+    justify-content: space-between;
+}
+div.actions i.fa{
+    font-size: 180%;
+}
+i.fa-heart{
+    color: grey;
+    cursor: pointer;
+}
+
+
+@media only screen and (max-width: 1024px){
+    div.tags{
+        margin: 50px auto 0%;
+        width: 95%;
+    }
+    div.heading{
+        font-size: 120%;
+    }
+    div.list{
+        display: block;
+        width: 100%;
+    }
+    div.a-hashtag{
+    display: inline-block;
+      font-size: 90%;
+      margin: 0% 0% 1% 0%;
+    }
+    div.posts{
+        margin: 0% auto 20%;
+        width: 95%;
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media only screen and (max-width: 750px){
+    div.a-hashtag{
+        padding: 1%;
+        margin: 0% 1% 1% 0%;
+    }
+    div.a-hashtag.current{
+        font-size: 90%;
+    }
+}
+
+@media only screen and (max-width: 700px){
+    section.body{
+        margin: 40px 0% 0%;
+    }
+    div.tags{
+        border: 1px solid lightgrey;
+        width: unset;
+        padding: 1%;
+        margin: 0%;
+    }
+    div.heading{
+        font-size: 120%;
+    }
+    div.list{
+        display: block;
+        width: 100%;
+    }
+    div.a-hashtag{
+    display: inline-block;
+      font-size: 80%;
+      margin: 0% 0% 1% 0%;
+    }
+    div.posts{
+        width: 100%;
+    }
+    div.photo_column{
+        width: 33%;
+    }
+    div.photo_frame{
+        width: 100%;
+        margin: 1%;
+        border: none;
+        border-radius: 0%;
+    }
+    div.actions{
+        display: none;
+    }
+    div.info{
+        display: none;
+    }
+}

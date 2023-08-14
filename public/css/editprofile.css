@@ -1,0 +1,186 @@
+div.header{
+    display: none;
+}
+section{
+    border: 1px solid rgb(233, 233, 233);
+    margin: 90px auto 30px;
+    width: 40%;
+    padding: 2%;
+    background: white;
+}
+div.profilepicture{
+    display: flex;
+}
+div.profilepicture img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+label.changeprofilepicture{
+    margin: auto 0% auto 10%;
+    text-align: center;
+    width: 200px;
+    padding: 2%;
+    font-size: 80%;
+    font-weight: 700;
+    color: black;
+    background: rgb(233, 233, 233);
+    border: 1px solid rgb(233, 233, 233);
+    border-radius: 3px;
+    cursor: pointer;
+}
+label.changeprofilepicture:hover{
+    background: white;
+}
+div.info{
+    display: flex;
+    margin: 4% 0%;
+}
+div.info div.label{
+    width: 145px;
+    font-size: 90%;
+    font-weight: 700;
+}
+div.info input{
+    width: 300px;
+    padding: 1%;
+}
+div.info select{
+    width: 316px;
+    padding: 1%;
+}
+div.info textarea{
+    max-width: 300px;
+    min-width: 300px;
+    max-height: 300px;
+    min-height: 300px;
+    font-size: 110%;
+    padding: 1%;
+}
+div.personalinfo{
+    color: grey;
+    font-size: 80%;
+}
+div.personalinfo p.title{
+    font-size: 110%;
+    font-weight: 700;
+}
+button.updateprofile{
+    margin: 0% 0% 0% 145px;
+    padding: 2%;
+    font-weight: 700;
+    font-size: 80%;
+    background: black;
+    color: white;
+    border: 1px solid black;
+    border-radius: 3px;
+    cursor: pointer;
+}
+div.msg{
+    margin: 0% 0% 0% 145px;
+    padding: 2% 0% 0%;
+    font-size: 90%;
+    font-weight: 700;
+}
+div.warning{
+    margin: 2% 0% 0% 23%;
+    color: grey;
+    font-size: 100%;
+    font-weight: 700;
+}
+div.success{
+    color: rgb(24, 157, 95);
+}
+div.error{
+    color: crimson;
+}
+.empty{
+    border: 1px solid crimson;
+}
+
+
+@media only screen and (max-width: 1024px){
+    section{
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 800px){
+    section{
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 650px){
+    header{
+        display: none;
+    }
+    div.header{
+        display: flex;
+        height: 40px;
+        border-bottom: 1px solid rgb(226, 226, 226);
+        font-size: 110%;
+        font-weight: 700;
+        position: fixed;
+        top: 0%;
+        width: 100%;
+        background: white;
+    }
+    div.header > * {
+        margin: auto 0%;
+    }
+    div.header div.back{
+        padding: 0% 0% 0% 2%;
+    }
+    div.header div.text{
+        margin: auto;
+        font-size: 90%;
+    }
+    section{
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    section{
+        margin: 55px auto 0px;
+        padding: 0% 5% 15%;
+        width: unset;
+        border: none;
+        background: none;
+    }
+    div.info{
+        display: block;
+        margin: 4% 0%;
+    }
+    div.info input{
+        width: 95%;
+        padding: 2% 1%;
+    }
+    div.info select{
+        width: 98%;
+        padding: 2% 1%;
+    }
+    div.info textarea{
+        max-width: 95%;
+        min-width: 95%;
+        max-height: 100px;
+        min-height: 100px;
+        font-size: 110%;
+        padding: 1%;
+    }
+    button.updateprofile{
+        display: block;
+        margin: 10% auto;
+        padding: 4% 0%;
+        width: 80%;
+        font-weight: 700;
+        font-size: 80%;
+        background: black;
+        color: white;
+        border: 1px solid black;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+}

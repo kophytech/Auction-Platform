@@ -1,0 +1,306 @@
+section.chatbox{
+    border: 1px solid rgb(226, 226, 226);
+    margin: 80px auto 0%;
+    width: 70%;
+    min-height: 88vh;
+    border-radius: 5px;
+    display: flex;
+    overflow: hidden;
+}
+div.chat{
+    width: 100%;
+    position: relative;
+}
+div.chat div.user{
+    border-bottom: 1px solid rgb(226, 226, 226);
+    padding: 0% 2%;
+    height: 8%;
+    display: flex;
+}
+div.user > *{
+    margin: auto 0%;
+}
+div.back{
+    margin-right: 5%;
+    cursor: pointer;
+}
+div.userdetails{
+    display: flex;
+}
+div.chat div.user img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+div.userdetails div.username{
+    color: black;
+    font-size: 130%;
+}
+div.price{
+    font-size: 140%;
+    font-weight: 700;
+    padding: 0.7%;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    margin-right: 5%;
+}
+div.price > i.fa{
+    font-size: 30%;
+    margin: 0% 20% 0% 0%;
+    color: grey;
+}
+div.messages{
+    height: 75%;
+    overflow-y: auto;
+    padding: 2% 5%;
+}
+div.messages::-webkit-scrollbar{
+    width: 10px;
+}
+div.messages::-webkit-scrollbar-thumb{
+    background: black;
+    border-radius: 25px;
+    margin: 50px;
+}
+div.messages::-webkit-scrollbar-track-piece{
+    background: none;
+}
+div.messages::-webkit-scrollbar-button{
+    display: none;
+}
+div.messages > div{
+    width: max-content;
+    max-width: 50%;
+    padding: 10px 15px;
+    border-radius: 25px;
+    font-weight: 400;
+    font-size: 110%;
+    margin-bottom: 2px;
+    word-wrap: break-word;
+}
+div.messages div.me{
+    margin: 0% 0% 2px auto;
+    background:  rgb(255, 193, 36);
+    color: white;
+}
+div.messages div.recipient{
+    margin: 0% 0% 2px 0px;
+    border: 1px solid rgb(226, 226, 226);
+    background: rgb(233, 233, 233);
+}
+
+div.textbox{
+    border-top: 1px solid rgb(226, 226, 226);
+    height: 10.7%;
+    padding: 0% 5%;
+    display: flex;
+    align-items: center;
+}
+div.text-input-box{
+    width: 100%;
+    display: flex;
+}
+div.text-input-box > *{
+    margin: auto 0%;
+}
+div.text-input-box textarea{
+    outline: none;
+    height: 30px;
+    width: 100%;
+    border: 1px solid lightgrey;
+    padding: 15px;
+    border-radius: 25px;
+    resize: none;
+    font-size: 110%;
+}
+div.text-input-box button{
+    font-size: 120%;
+    font-weight: 700;
+    margin-left: 5%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+div.recipient-not-subscribed{
+    text-align: center;
+    background: crimson;
+    padding: 1% 0%;
+    color: white;
+    font-size: 90%;
+    font-weight: 700;
+    position: absolute;
+    width: 100%;
+    bottom: 10.5%;
+}
+div.msg{
+    width: 60%;
+    margin: 8% auto 0%;
+    text-align: center;
+}
+div.msg > div.small-text{
+    font-size: 100%;
+    color: grey;
+    font-weight: 700;
+}
+div.msg > div.large-text{
+    font-size: 150%;
+    font-weight: 800;
+}
+div.sub-details{
+    border-radius: 5px;
+    width: 40%;
+    margin: 5% auto 0%;
+    padding: 2% 0%;
+}
+section.subscribe div.price{
+    align-items: baseline;
+    justify-content: center;
+    margin-bottom: 15%;
+    font-size: 100%;
+    display: flex;
+}
+div.price span.digit{
+    color: rgb(255, 193, 36);
+    font-size: 400%;
+}
+div.details{
+    margin: 5% auto;
+    text-align: center;
+    font-size: 110%;
+    font-weight: 600;
+    color: grey;
+}
+div.sub-details button{
+    /* outline: none; */
+    /* cursor: pointer; */
+    /* margin: 10% auto 0%; */
+    /* display: block; */
+    /* border: 1px solid rgb(255, 193, 36);
+    background: rgb(255, 193, 36); */
+    /* color: white; */
+    /* font-weight: 700; */
+    /* padding: 4%; */
+    /* border-radius: 25px; */
+}
+section.payment-section{
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.548);
+    z-index: 2;
+    display: flex;
+
+}
+div.payment-form{
+    width: 30%;
+    height: 50vh;
+    margin: auto;
+    background: white;
+    border-radius: 15px;
+}
+
+@media only screen and (max-width: 1024px){
+    div.messages{
+        height: 80%;
+        padding: 2% 5%;
+    }
+    div.textbox{
+        height: 9%;
+    }
+}
+
+@media only screen and (max-width: 800px){
+    section.chatbox{
+        width: 90%;
+    }
+}
+
+@media only screen and (max-width: 700px){
+    section.chatbox{
+        width: 90%;
+    }
+    div.back{
+        display: block;
+        margin-right: 5%;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    header{
+        display: none !important;
+    }
+    section.chatbox{
+        margin: 0%;
+        width: 100%;
+        height: 100vh;
+        border: none;
+    }
+    div.chat div.user{
+        height: 7%;
+    }
+    div.userdetails{
+        display: flex;
+    }
+    div.chat div.user img{
+        width: 40px;
+        height: 40px;
+    }
+    div.chat div.user div.username{
+       font-size: 100%;
+    }
+    div.back{
+        display: block;
+        margin-right: 5%;
+    }
+    div.price{
+        font-size: 100%;
+    }
+    div.messages{
+        padding: 2% 3%;
+        height: 82%;
+    }
+    div.messages::-webkit-scrollbar{
+        width: 0px;
+    }
+    div.messages::-webkit-scrollbar-thumb{
+        background: unset;
+        border-radius: unset;
+        margin: unset;
+    }
+    div.messages::-webkit-scrollbar-track-piece{
+        background: unset;
+    }
+    div.messages::-webkit-scrollbar-button{
+        display: unset;
+    }
+    div.textbox{
+        height: 9%;
+        padding: 0% 2%;
+    }
+    div.text-input-box{
+        width: 100%;
+        display: flex;
+    }
+    div.text-input-box textarea{
+        height: 20px;
+        padding: 10px 15px;
+        font-size: 100%;
+    }
+    div.text-input-box button{
+        font-size: 100%;
+    }
+}
+
+@media only screen and (max-width: 400px){
+    div.chat div.user img{
+        width: 30px;
+        height: 30px;
+    }   
+}

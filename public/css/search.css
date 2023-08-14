@@ -1,0 +1,119 @@
+*{
+    margin: 0px;
+    font-family: 'montserrat';
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+
+div.searchBar{
+    display: flex;
+    padding: 1% 4%;
+}
+input.search{
+    border: none;
+    outline: none;
+    padding:  5% 3%;
+    width: 100%;
+}
+div.searchBar i.fa-search{
+    margin: auto 0%;
+    font-size: 120%;
+    color: lightgrey;
+}
+
+div.tags{
+    border-bottom: 1px solid  rgba(211, 211, 211, 0.63);
+    width: unset;
+    padding: 1%;
+    margin: 0%;
+}
+div.atag{
+    padding: 1%;
+    border: 1px solid rgb(221, 221, 221);
+    border-radius: 5px;
+    font-weight: 700;
+    color: grey;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 80%;
+    margin: 0% 0% 1% 0%;
+}
+div.atag.current{
+    border: 1px solid rgb(255, 193, 36);
+    background: rgb(255, 193, 36);
+    color: white;
+}
+div.posts{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+div.photo_column{
+    width: 33%;
+}
+
+section.search-content{
+    padding: 2% 0%;
+}
+div.result{
+    display: flex;
+    padding: 1% 2%;
+}
+div.result *{
+    margin: auto 0%;
+}
+ 
+div.result img{
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+}
+div.result div.name{
+    color: black;
+    margin: auto 0% auto 3%;
+    text-transform: capitalize;
+}
+div.result div.username{
+    color: rgb(29, 28, 27); 
+    margin: 0%;
+    font-weight: 600;
+    font-size: 100%;
+    text-transform: lowercase;
+}
+div.result div.fullname{
+    color: rgb(197, 197, 197);   
+    margin: 0%;
+    font-size: 100%;
+}
+header div.result div.icon{
+    border-radius: 50%;
+    border: 1px solid rgb(197, 197, 197);
+    text-align: center;
+    width: 60px;
+    height: 60px;
+    display: flex;
+}
+div.result i.fa{
+    color: rgb(197, 197, 197);
+    font-size: 180%;
+    margin: auto;
+}
+div.noresult{
+    display: flex;
+    height: 50px;
+}
+div.noresult>div.text{
+    margin: auto;
+    color: grey;
+    font-size: 90%;
+    font-weight: 600;
+}
+
+

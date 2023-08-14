@@ -1,0 +1,456 @@
+body{
+    position: relative;
+}
+
+div.header{
+    display: none;
+}
+
+section{
+    /* border: 1px solid rgb(202, 202, 202);  */
+    box-shadow: 0px 3px 15px 1px rgba(0, 0, 0, 0.219);
+    border-radius: 5px;
+    display: flex;
+    height: 700px;
+    min-width: min-content;
+    width: max-content;
+    max-width: 90%;
+    overflow: hidden;
+    margin: 10vh auto 0px;
+}
+section img{
+    height: 700px;
+    width: auto;
+}
+div.post-details{
+    overflow: auto;
+    width: 45vh;
+    height: 100%;
+    position: relative;
+}
+div.post-details div.user{
+    display: flex;
+    align-items: center;
+    padding: 0% 5%;
+    height: 60px;
+    border-bottom: 1px solid rgb(226, 226, 226);
+}
+div.post-details div.user img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid rgb(11, 61, 224);
+    padding: 1px;
+}
+div.post-details div.user div.username{
+    color: black;
+    margin: auto 0% auto 5px;
+    font-size: 80%;
+}
+div.postdate{
+    margin-left: auto;
+    font-size: 80%;
+    color: grey;
+    display: flex;
+    align-items: center;
+}
+div.trash{
+    border-left: 1px solid rgb(223, 223, 223);
+    margin-left: 5%;
+    padding: 0%;
+    padding-left: 5%;
+    font-size: 300%;
+    height: 60%;
+    display: flex;
+    align-items: flex-start;
+    color: crimson;
+    cursor: pointer;
+}
+div.caption{
+    font-size: 80%;
+    padding: 2% 5% 0%;
+    color: rgb(34, 34, 34);
+}
+div.tags{
+    padding: 0% 5% 2%;
+}
+div.atag{
+    background: rgb(202, 202, 202);
+    border: 1px solid  rgb(202, 202, 202);
+    width: auto;
+    display: inline-flex;
+    padding: 1% 1%;
+    border-radius: 5px;
+    margin: 2% 2px 2px 0px;
+    font-size: 70%;
+}
+div.post-status{
+    display: flex;
+    justify-content: space-between;
+}
+div.post-status > div {
+    white-space: nowrap;
+    width: max-content;
+    display: flex;
+    align-items: center;
+    padding: 1% 5% 2%;
+}
+div.nooflikes{
+    font-weight: 400;
+    font-size: 80%;
+    padding: 0% 2%;
+}
+div.nooflikes span{
+    font-weight: 700;
+    font-size: 110%;
+    margin: 0% 0% 0% 15%;
+}
+i.fa-heart{
+    font-size: 150% !important;
+}
+i.fa-video{
+    font-size: 105% !important;
+    transform: rotateY(180deg);
+    color: rgb(238, 47, 85);
+}
+i.fa.liked{
+    color: crimson;
+}
+i.fa.unliked{
+    color: grey;
+}
+i.fa-heart{
+    color: grey;
+    cursor: pointer;
+}
+div.post-details div.head{
+    border-top: 1px solid rgb(226, 226, 226);
+    padding: 5% 5%;
+    display: flex;
+    color: rgb(55, 53, 50);
+}
+div.post-details div.head>div{
+    display: flex;
+    width: 50%;
+}
+div.post-details div.head>div.left{
+    font-size: 90%;
+}
+div.post-details div.head>div.right{
+    display: block;
+    text-align: right;
+    font-size: 70%;
+    margin: auto 0%;
+}
+div.post-details div.head>div.right span.digit{
+    font-weight: 700;
+    font-size: 120%;
+}
+div.post-details i.fa{
+    font-size: 40%;
+    margin: auto 3%;
+}
+div.post-details div.head div.section-title{
+    font-weight: 700;
+    font-size: 85%;
+    margin: auto 0%;
+}
+div.post-details div.head div.amount-of-bids{
+    font-size: 80%;
+    margin: auto 0%;
+}
+div.bid{
+    padding: 2% 5%;
+    border: 1px solid rgb(243, 243, 243);
+    position: relative;
+}
+div.bid div.meta-data{
+    display: flex;
+}
+div.bidder > a{
+    width: 80%;
+}
+div.meta-data div.bidder{
+    display: flex;
+}
+div.bidder img{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+div.bidder div.name{
+    margin: auto 0% auto 5%;
+    font-size: 80%;
+    font-weight: 600;
+}
+div.meta-data div.date{
+    font-size: 70%;
+    font-weight: 600;
+    margin: auto 0% auto auto;
+    color: grey;
+}
+div.meta-data div.options-button{
+    width: 10%;
+    text-align: center;
+    cursor: pointer;
+}
+div.options-button i.fa-caret-down, div.options-button i.fa-caret-up{    
+    font-size: 140%;
+    color: grey;
+}
+div.options-list{
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    width: 89%;
+    height: 100%;
+    background: rgba(255, 255, 255);
+    align-items: center;
+    justify-content: space-between;
+    padding: 0% 5%;
+}
+div.options-list i.fa{
+    font-size: 150%;
+    color: grey;
+}
+div.bid-details{
+    display: flex;
+    justify-content: space-between;
+}
+div.bid-details div.price{
+    margin: 0% 0% 0% 8%;
+    font-size: 70%;
+    font-weight: 700;
+    background: black;
+    color: white;
+    padding: 2%;
+    border-radius: 12px;
+}
+div.bid-actions{
+    display: flex;
+    justify-content: space-between;
+    margin: 0% 5% 0% 0%;
+    width: 20%;
+}
+div.bid-actions>div{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+div.bid-actions div.banner{
+    font-size: 250%;
+    color: green;
+}
+div.chat{
+    display: flex;
+    align-items: flex-end;
+}
+div.chat i.fa-comment{
+    font-size: 130%;
+    color: grey;
+}
+div.post-content{
+    height: 87%;
+}
+div.bid-input{
+    border-top: 1px solid rgb(232, 232, 232);
+    background: white;
+    height: 10%;
+}
+div.msg{
+    padding: 0% 5%;
+    height: 30%;
+    color: crimson;
+    font-size: 70%;
+    font-weight: 700;
+    display: flex;
+    align-items: flex-end;
+}
+div.bid-input div.bottom{
+    display: flex;
+    margin: auto 0% 0%;
+    height: 70%;
+}
+div.bid-input input.biddingprice{
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    background: none;
+    width: 90%;
+    margin: 0%;
+    display: block;
+    padding: 2% 5%;
+    font-weight: 600;
+}
+button.submitbid{
+    width: 30%;
+    margin: auto 0%;
+    font-weight: 700;
+    font-size: 75%;
+    background: none;
+    border: none;
+    padding: 1% 0%;
+    cursor: pointer;
+    outline: none;
+    color: black;
+}
+button.submitbid:disabled{
+    opacity: 0.5;
+}
+div.nobids{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 100px 0% 0% 0%;
+    font-size: 150%;
+    font-weight: 700;
+    color: grey;
+}
+
+@media only screen and (max-width: 1024px){    
+    section{
+        height: 500px;
+    }
+    section img{
+        height: 500px;
+    }
+    div.post-details{
+        width: 20vh;
+    }
+    div.bid-actions{
+        width: 25%;
+        margin: 0% 5% 0% auto;
+    }
+    div.bid-input input.biddingprice{
+        width: 70%;
+    }
+    div.bid-input input.biddingprice::placeholder{
+        font-size: 90%;
+    }
+}
+
+@media only screen and (max-width: 800px){    
+    section{
+        height: unset;
+        width: 80%;
+        min-width: unset;
+        display: block;
+        margin-bottom:  10vh;
+    }
+    section img{
+        height: unset;
+        width: 100%;
+    }
+    div.post-details{
+        width: 100%;
+        height: unset;
+    }
+    div.bid-actions{
+        width: 11%;
+        margin: 0% 0% 0% auto;
+    }
+    img.winningbidicon{
+        width: 25px;
+    }
+    div.post-content{
+        height: unset;
+    }
+    div.bid-input{
+        position: fixed;
+        border: 1px solid rgb(232, 232, 232);
+        bottom: 0%;
+        width: 79.7%;
+        height: 50px;
+    }
+    div.msg{
+        height: 10%;
+        padding: 1% 5%;
+    }
+    div.bid-input div.bottom{
+        height: 0%;
+    }
+    div.nobids{
+        margin: 50px 0% 50px 0%;
+    }
+}
+
+@media only screen and (max-width: 750px){    
+    section{
+        width: 90%;
+    }
+    div.bid-input{
+        width: 100%;
+        left: 0%;
+    }
+}
+
+@media only screen and (max-width: 600px){    
+     header{
+        display: none;
+    }
+    div.header{
+        display: flex;
+        height: 40px;
+        font-size: 110%;
+        font-weight: 700;
+        position: fixed;
+        top: 0%;
+        width: 100%;
+        background: black;
+        color: white;
+        z-index: 1;
+    }
+    div.header > * {
+        margin: auto 0%;
+    }
+    div.header div.back{
+        padding: 0% 4% 0%;
+    }
+    div.header div.text{
+        margin: auto;
+        font-size: 90%;
+        width: 20%;
+    }
+    
+    section{
+        width: 90%;
+        margin-bottom: 15vh;
+        margin-top: 5vh;
+    }
+    div.post-details div.user{
+        padding: 1% 2%;
+    }
+    div.bid-input{
+        height: 10%;
+    }
+    div.msg{
+        padding: 3% 5%;
+    }
+    div.bid-input div.bottom{
+        height: 40%;
+    }
+    div.bid-input input.biddingprice{
+        font-size: 100%;
+    }
+    button.submitbid{
+        font-size: 100%;
+    }
+    footer{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 500px){    
+    section{
+        max-width: unset;
+        width: unset;
+        /* margin: 0% 0% 15vh 0%; */
+    }
+    div.bid-actions{
+        width: 20%;
+    }
+    div.bid-actions i.fa-comment{
+        font-size: 200%;
+    }
+}

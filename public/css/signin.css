@@ -1,0 +1,234 @@
+body{
+    background: rgb(247, 247, 247);
+}
+section{
+    width: 300px;
+    border: 1px solid rgb(233, 233, 233);
+    margin: 10% 20% 0% auto;
+    padding: 1% 2%; 
+    display: block;
+    background: white;
+}
+section option.head{
+    color: black;
+    font-weight: 700;
+    font-size: 120%;
+}
+section.signup a{
+    text-decoration: underline;
+    color: grey;
+}
+div.head{
+    text-align: center;
+}
+div.msg{
+    margin: 10% 0%;
+    font-weight: 800;
+    color: grey;
+}
+section div.logo{
+    width: 12%;
+    margin: 4% 0% 16%;
+}
+form>input, form>select{
+    width: 90%;
+    padding: 4% 3%;
+    margin: 1% 0%;
+    border: 1px solid lightgrey;
+    background: rgb(248, 248, 248);
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 80%;
+    outline: none;
+}
+form>select{
+    width: 97%;
+    padding: 4% 1%;
+}
+form>select:invalid{
+    color: grey;
+}
+input:focus{
+    outline: none;  
+}
+div.link{
+    text-align: end;
+    font-size: 80%;
+    height: 25px;
+    width: 97%;
+    padding: 3% 0%;
+}
+a.forgotpassword{
+   color: grey;
+   text-decoration: underline;
+   font-size: 90%;
+}
+button{
+    width: 97%;
+    padding: 2% 0%;
+    font-weight: 700;
+    background: rgb(11, 61, 224);
+    border: 1px solid rgb(11, 61, 224);
+    color: white;
+    margin: 2% 0% 0%;
+    font-size: 90%;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: none;
+    opacity: 1;
+}
+button:active{
+    transform: scale(0.99);
+    transition: 0.1s;
+}
+div.legal{
+    font-size: 80%;
+    text-align: center;
+    padding: 8% 0%;
+}
+div.orsignup{
+    width: 97%;
+    text-align: center;
+    margin: 10% 0% 0% 0%;
+    color: grey;
+}
+div.orsignup > a{
+    margin: 0% 0% 0% 10%;
+    font-weight: 700;
+    color: rgb(255, 193, 36);
+}
+div.orsignin{
+    padding: 5% 0%;
+    text-align: center;
+    font-size: 80%;
+}
+div.orsignin a{
+    font-weight: 700;
+    text-decoration: underline  ;
+    font-size: 110%;
+    color:rgb(11, 61, 224);
+}
+input.taken, input.nomatch{
+    border: 1px solid crimson;
+}
+p.inputerr{
+    display: none;
+    color: crimson;
+    font-size: 70%;
+    margin: 0% 0% 4% 0%;
+}
+input.taken + p.inputerr, input.nomatch + p.inputerr{
+    display: block;
+}
+button:disabled{
+    opacity: 0.5;
+}
+img.envelope{
+    width: 30%;
+    margin: 5% auto;
+    display: block;
+}
+div.message{
+    line-height: 150%;
+    padding: 4% 0%;
+    font-size: 90%;
+    font-weight: 500;
+    text-align: start;
+}
+span.email{
+    font-weight: 700;
+    color: rgb(0, 132, 255);
+}
+div.resendcode{
+    display: inline;
+    cursor: pointer;
+    text-decoration: underline;
+    color: rgb(0, 132, 255);
+}
+div.resendcode a{
+    color: rgb(0, 132, 255);
+}
+div.errormsg{
+    color: crimson;
+    font-size: 80%;
+}
+
+
+@media only screen and (max-width: 1024px){
+    section{
+        margin: 15vh auto;
+        width: 60%;
+    }
+    form>input, form>select{
+        padding: 3% 3%;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    section{
+        margin: 15vh auto;
+        width: 80%;
+        text-align: center;
+    }
+    div.head{
+        width: 80%;
+        margin: 0% auto;
+    }
+    form>input, form>select{
+        padding: 3% 3%;
+        background: none; 
+    }
+    div.errormsg{
+        text-align: start;
+        padding: 0% 5%;
+    }
+    p.inputerr{
+        text-align: start;
+        padding: 1% 5%;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    body{
+        background: white;
+    }
+    section{
+        border: none;
+        margin: 20vh auto;
+        width: 100%;
+        text-align: center;
+        padding: 0%;
+        background: none;
+    }
+    section div.logo{
+        margin: 4% 0% 16% 5%;
+    }
+    form>input{
+        margin: 2% 0% 0%;
+        padding: 3% 3%;
+        width: 83%;
+    }
+    form>select{
+        margin: 2% 0% 0%;
+        width: 90%;
+        padding: 3%;
+    }
+    button{
+        margin: 5% 0% 0%;
+        width: 90%;
+    }
+    div.legal{
+        font-size: 90%;
+        width: 80%;
+        margin: 0% auto;
+    }
+    div.orsignin{
+        padding: 5% 0%;
+        text-align: left;
+        display: flex;
+        width: 80%;
+        margin: 0% auto;
+        justify-content: space-between;
+        font-size: 90%;
+    }
+}

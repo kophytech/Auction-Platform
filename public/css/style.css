@@ -1,0 +1,471 @@
+*{
+    margin: 0px;
+    font-family: 'montserrat';
+}
+img{
+    width: 100%;
+    height: 100%;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+header{
+    display: flex;
+    padding: 0% 7%;
+    height: 60px;
+    background: rgb(36, 29, 102);
+    color: white;
+    position: fixed;
+    width: 90%;
+    z-index: 1;
+    top: 0%;
+}
+header *{
+    margin: auto 0%;
+}
+header div.left{
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+}
+header div.logo{
+    font-weight: 800;
+    font-size: 150%;
+    color: white;
+}
+section div.logo{
+    font-weight: 800;
+    font-size: 150%;
+    color: rgb(29, 28, 27);
+}
+header div.search{
+    position: relative;
+}
+header div.search>input{
+    border: 1px solid white;
+    background: white;
+    width: 300px;
+    border-radius: 3px;
+    outline: none;
+    padding: 4% 5%;
+    font-weight: 500;
+}
+header div.search-content{
+    background: white;
+    box-shadow: 0px 1px 5px 0px rgb(230, 230, 230);
+    position: absolute;
+    width: 338px;
+    min-height: 50px;
+    max-height: 250px;
+    overflow: hidden;
+    top: 104%;
+    left: -1%;
+    z-index: 10;
+    border-radius: 5px;
+    display: none;
+    overflow: auto;
+}
+div.result{
+    display: flex;
+    height: 50px;
+    padding: 1% 5%;
+}
+div.result img{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+div.result div.name{
+    color: black;
+    margin: auto 0% auto 3%;
+    text-transform: capitalize;
+}
+div.result div.username{
+    color: rgb(29, 28, 27);
+    margin: 0%;
+    font-weight: 600;
+    font-size: 95%;
+    text-transform: lowercase;
+}
+div.result div.fullname{
+    color: rgb(197, 197, 197);
+    margin: 0%;
+    font-size: 95%;
+}
+div.result i.fa{
+    color: rgb(197, 197, 197);
+    font-size: 100%;
+    padding: 9px 10px;
+    border-radius: 50%;
+    border: 1px solid rgb(197, 197, 197);
+}
+div.noresult{
+    display: flex;
+    height: 50px;
+}
+div.noresult>div.text{
+    margin: auto;
+    color: grey;
+    font-size: 90%;
+    font-weight: 600;
+}
+
+
+nav{
+    display: flex;
+    font-size: 90%;
+    font-weight: 800;
+    margin-left: auto;
+}
+nav > div{
+    cursor: pointer;
+    margin-right: 25px;
+}
+nav div.signup{
+    margin: auto 0%;
+    font-size: 100%;
+    padding: 0px 0px;
+    text-align: center;
+    border-bottom: 2px solid rgb(36, 233, 255);
+}
+nav a{
+    color: inherit;
+    text-decoration: unset;
+}
+div.notification-icon{
+    position: relative;
+}
+div.all-notifications{
+    border: 1px solid rgb(197, 197, 197);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.404);
+    position: absolute;
+    background: white;
+    width: 450px;
+    right: 0%;
+    top: 140%;
+    min-height: 50px;
+    max-height: 300px;
+    border-radius: 5px;
+    overflow: auto;
+}
+div.all-notifications *::selection{
+    background: none;
+}
+div.no-notifications{
+    display: flex;
+    height: 50px;
+}
+div.no-notifications div.icon{
+    display: none;
+}
+div.no-text{
+    font-size: 80%;
+    color: grey !important;
+    font-weight: 600;
+}
+div.no-notifications div{
+    color: black;
+    margin: auto;
+}
+div.a-notification{
+    height: 50px;
+    display: flex;
+    padding: 0% 2% 3%;
+    border-top: 1px solid rgb(230, 230, 230)
+}
+div.a-notification:nth-child(1){
+    border: none;
+}
+div.a-notification > *{
+    margin: auto 0% 0%;
+}
+div.a-notification img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+div.notif-info{
+    color: black;
+    padding: 0% 2%
+}
+div.notif-info div.content{
+    font-weight: 400;
+}
+div.a-notification div.date{
+    font-size: 100%;
+}
+div.a-notification button{
+    margin: auto 0% 0% auto;
+    width: 20%;
+    padding: 2% 0%;
+    background: black;
+    border: 1px solid black;
+    color: white;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+}
+div.a-notification div.liked{
+    margin: auto 0% 0% auto;
+    width: 20%;
+    text-align: center;
+}
+div.liked i.fa-heart{
+    font-size: 220%;
+    color: crimson;
+}
+div.bid-image{
+    margin: 2% 7% auto auto;
+}
+div.bid-image img{
+    border-radius: 0px;
+    height: 40px;
+    width: auto;
+}
+
+i.fa-user-circle{
+    font-size: 250%;
+    color: lightgrey;
+}
+div.username{
+    margin: auto 1% auto 4%;
+    font-size: 100%;
+    font-weight: 700;
+    text-transform: capitalize;
+    color: white;
+}
+div.user-profile{
+    margin-left: 30px;
+    width: fit-content;
+    position: relative;
+}
+div.user-profile button{
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    border: none;
+    background: none;
+    outline: none;
+    overflow: hidden;
+    border-radius: 5px;
+    width: 100%;
+}
+button.without-image:active{
+    background: rgba(228, 228, 228, 0.63);
+}
+button.with-image:active{
+    background: rgba(228, 228, 228, 0.63);
+}
+button.with-image>img{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+div.notification, .create-auction, .all-auction, .signout{
+    height: 70%;
+    margin: auto 5%;
+}
+i.fa-bell, i.fa-hashtag, i.fa-home{
+    font-size: 200%;
+}
+div.user-profile i.fa-caret-down, i.fa-caret-up{
+    font-size: 110%;
+    color: white;
+    width: 20px;
+}
+div.user-profile-options{
+    border: 1px solid white;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.404);
+    z-index: 1;
+    position: absolute;
+    right: -50%;
+    width: 200px;
+    padding: 0% 0%;
+    margin: 3px 0% 0% 0%;
+    background: white;
+    border-radius: 5px;
+    color: black;
+    font-weight: 500;
+    font-size: 90%;
+    overflow: hidden;
+}
+div.user-profile-options div{
+    padding: 5% 10%;
+}
+div.logout{
+    border-top: 1px solid rgb(235, 235, 235);
+}
+div.user-profile-options div:hover{
+    background: rgb(252, 252, 252);
+}
+div.settings{
+    display: none;
+}
+section.hero{
+    padding-top: 250px;
+    height:100%;
+}
+footer{
+    display: none;
+}
+
+
+
+@media only screen and (max-width: 800px){
+    header div.left{
+        width: 60%;
+        justify-content: unset;
+    }
+    header div.search{
+        margin: 0% 0% 0% 10%;
+    }
+    header div.search>input{
+        width: 200px;
+    }
+    div.search-content{
+        width: 250px;
+        left: -7%;
+    }
+    div.user-profile{
+        margin-left: 0px;
+        width: fit-content;
+        position: relative;
+    }
+    div.user-profile-options{
+        width: 150%;
+        font-size: 80%;
+        right: -8%;
+    }
+}
+
+@media only screen and (max-width: 700px){
+    header{
+        width: 92%;
+        padding: 0% 4%;
+    }
+    header div.search>input{
+        width: 160px;
+    }
+    div.search-content{
+        width: 200px;
+        left: -5%;
+    }
+    div.result img{
+        height: 30px;
+        width: 30px;
+    }
+    div.result div.name{
+        font-size: 80%;
+    }
+    nav>div{
+        margin-right: 15px;
+    }
+    i.fa-bell, i.fa-hashtag, i.fa-home{
+        font-size: 170%;
+    }
+    button.with-image>img{
+        width: 30px;
+        height: 30px;
+        object-fit: cover;
+        border-radius: 50%;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    header{
+        padding: 0% 5%;
+        width: 100%;
+        height: 50px;
+    }
+    div.mobile-logout{
+        margin-left: auto;
+        margin-right: 15%;
+    }
+    header div.search{
+        display: none;
+    }
+    header nav{
+        display: none;
+    }
+    header div.left{
+        margin: 0% 0% 0% 3%;
+        text-align: left;
+    }
+    header div.logo{
+        font-size: 130%;
+    }
+
+    div.mobile-nav{
+        /* display: block; */
+        margin: auto 0% auto auto;
+        font-size: 110%;
+        width: 15%;
+        text-align: center;
+    }
+    div.hero-inner{
+        height: 90vh;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    footer{
+        display: flex;
+        position: fixed;
+        bottom: 0%;
+        z-index: 10;
+        box-shadow: -1px 0px 10px 0px rgba(0, 0, 0, 0.342);
+        background: white;
+        width: 90%;
+        justify-content: space-between;
+        color: grey;
+        padding: 2% 5%;
+    }
+    footer *{
+        margin: auto 0%;
+    }
+    div.current-nav{
+        font-weight: 600;
+        font-size: 105%;
+        color: rgb(36, 29, 102);
+    }
+    div.user-profile i.fa-caret-down, i.fa-caret-up{
+        display: none;
+    }
+    footer i.fa{
+        font-size: 150%;
+        font-weight: 600;
+    }
+    footer div.username{
+        display: none;
+    }
+    button.with-image>img{
+        border: 1px solid rgba(11, 61, 224, 0.74);
+        width: 24px;
+        height: 24px;
+        padding: 2px;
+    }
+    button.without-image>i.fa{
+       font-size: 209%;
+    }
+    section.hero{
+        padding-top: 0px;
+        height:100vh;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    div.current-nav{
+        font-size: 115%;
+    }
+    footer i.fa{
+        font-size: 160%;
+    }
+    button.with-image>img{
+        width: 26px;
+        height: 26px;
+        padding: 2px;
+    }
+}
